@@ -1,0 +1,16 @@
+model_file_name: model/resnet.py
+model_name: resnet_mean
+model_type: resnet
+mode: mean
+
+# ResNet architecture parameters
+d_model: 256
+n_blocks: 4
+kernel_size: 5
+dropout: 0.1
+
+# Sequence parameters
+output_dim: 4
+
+# For compatibility with training code
+hidden_dims: []

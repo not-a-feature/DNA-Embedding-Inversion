@@ -1,0 +1,64 @@
+###############################################
+# Hydra configuration for DNA sequence reconstruction
+# Modify values via CLI overrides, e.g.:
+#   python train.py optim.lr=1e-4
+###############################################
+
+defaults:
+  - data: dnabert2_100_hg38_per_token
+  - model: mlp_per_token
+  - _self_
+
+
+optim:
+  lr: 1e-3
+  weight_decay: 1e-4
+  epochs: 70
+  batch_size: 32
+  num_workers: 0 
+  
+  # Learning rate scheduler configuration
+  use_scheduler: true  # Enable/disable OneCycleLR scheduler
+  scheduler:
+    max_lr: 1e-3  # Maximum learning rate (peak of the cycle)
+    pct_start: 0.3  # Percentage of cycle spent increasing learning rate
+    anneal_strategy: cos  # 'cos' or 'linear' annealing
+    div_factor: 25.0  # Initial_lr = max_lr / div_factor
+    final_div_factor: 1e4  # Min_lr = initial_lr / final_div_factor
+
+train:
+  seed: 42
+  project: dna-embedding-inversion
+  run_name: null
+  use_wandb: false
+  log_interval: 30
+  device: cuda:0
+  
+  # Early stopping configuration
+  early_stopping:
+    enabled: true
+    patience: 10  # Number of epochs to wait for improvement
+    min_delta: 1e-5  # Minimum change to qualify as improvement
+
+  # Maximum number of validation samples (null = all)
+  max_val_samples: null
+
+hydra:
+  run:
+    dir: outputs/train-${now:%Y-%m-%d-%H-%M-%S}
+  sweep:
+    dir: outputs/train-${now:%Y-%m-%d-%H-%M-%S}
+    subdir: ${hydra.job.num}
+  job:
+    chdir: true
+  job_logging:
+    root:
+      level: INFO
+    handlers:
+      console:
+        class: logging.StreamHandler
+        formatter: simple
+        stream: ext://sys.stdout
+    formatters:
+      simple:
+        format: '%(asctime)s | %(levelname)s | %(message)s'

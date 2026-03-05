@@ -1,0 +1,5 @@
+{
+    "best_val_loss": 0.6972626495971355,
+    "stopped_early": true,
+    "final_epoch": 49
+}

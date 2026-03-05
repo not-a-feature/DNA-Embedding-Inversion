@@ -1,0 +1,16 @@
+torch==2.6.0
+hydra-core==1.3.2
+omegaconf==2.3.0
+numpy==2.3.3
+pandas==2.3.3
+wandb==0.21.3
+pytest==8.4.2
+scikit-learn==1.7.1
+matplotlib==3.9.4
+seaborn==0.13.2
+Levenshtein==0.27.1
+umap-learn==0.5.7
+scipy==1.15.2
+transformers==4.37.2
+h5py==3.12.1
+miniFasta==3.2.0

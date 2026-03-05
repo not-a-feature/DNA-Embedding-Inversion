@@ -1,0 +1,30 @@
+device: cuda:0
+input_path: null
+update_config: null
+
+num_sequences: 100000
+seq_length: 50
+seed: 42
+mean: false
+train_split: 0.7
+val_split: 0.15
+
+hydra:
+  run:
+    dir: outputs/generatedata-${now:%Y-%m-%d-%H-%M-%S}
+  sweep:
+    dir: outputs/generatedata-${now:%Y-%m-%d-%H-%M-%S}
+    subdir: ${hydra.job.num}
+  job:
+    chdir: false
+  job_logging:
+    root:
+      level: INFO
+    handlers:
+      console:
+        class: logging.StreamHandler
+        formatter: simple
+        stream: ext://sys.stdout
+    formatters:
+      simple:
+        format: '%(asctime)s | %(levelname)s | %(message)s'

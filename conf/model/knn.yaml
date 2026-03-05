@@ -1,0 +1,9 @@
+model_file_name: model/knn.py
+model_name: knn
+model_type: knn
+mode: mean
+
+k: 1
+hidden_dims: []
+dropout: 0.0
+output_dim: 4

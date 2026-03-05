@@ -1,0 +1,17 @@
+model_file_name: model/decoder.py
+model_name: decoder_mean
+model_type: decoder
+mode: mean  # Decoder supports both per_token and mean modes
+
+# Decoder architecture parameters
+d_model: 128
+nhead: 8
+num_layers: 6
+dim_feedforward: 1024
+dropout: 0.2
+
+# Sequence parameters
+output_dim: 4  # Initial dimension for nucleotide classes (overridden by tokenizer vocab size during training)
+
+# For compatibility with training code (not used by decoder)
+hidden_dims: []

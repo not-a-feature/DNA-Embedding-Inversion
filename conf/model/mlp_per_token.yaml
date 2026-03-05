@@ -1,0 +1,7 @@
+model_file_name: model/mlp.py
+model_name: mlp_small
+model_type: mlp
+mode: per_token  # "per_token" or "mean"
+
+hidden_dims: [256, 256, 128]
+dropout: 0.2

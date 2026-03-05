@@ -1,0 +1,17 @@
+model_file_name: model/encoder.py
+model_name: encoder_mean
+model_type: encoder
+mode: mean  # Encoder supports both per_token and mean modes
+
+# Transformer architecture parameters
+d_model: 128
+nhead: 8
+num_layers: 6
+dim_feedforward: 512
+dropout: 0.1
+
+# Sequence parameters
+output_dim: 4  # Initial dimension for nucleotide classes (overridden by tokenizer vocab size during training)
+
+# For compatibility with training code (not used by encoder)
+hidden_dims: []

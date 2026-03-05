@@ -1,0 +1,65 @@
+data/*.h5
+data/*.csv
+data/*.fa
+data/*.fa.fai
+model.pt
+tex/
+
+# Generated .gitignore patterns
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+eggs/
+.eggs/
+lib/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+htmlcov/
+.tox/
+.coverage
+.cache
+.pytest_cache/
+.env
+.venv
+env/
+venv/
+.ipynb_checkpoints
+.mypy_cache/
+.ruff_cache/
+
+# Cache Files
+*.cache
+.cache/
+cache/
+**/cache/
+.npm/
+.yarn/
+
+# Dependencies
+node_modules/
+vendor/
+packages/
+
+# Build Output
+build/
+dist/
+out/
+*.min.*
+*.map
+
+# VS Code
+.vscode/
+.history/
+.github/copilot-instructions.md
+outputs.tar
