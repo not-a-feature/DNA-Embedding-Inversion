@@ -1,8 +1,11 @@
 # How Private Are DNA Embeddings? Inverting Foundation Model Representations of Genomic Sequences
 
-> **Authors:** Jules Kreuer, Sofiane Ouaari, Nico Pfeifer
+> **Authors:** Sofiane Ouaari*, Jules Kreuer* Nico Pfeifer<br>
+>  *: Shared first authorship.<br>
 >
-> Methods in Medical Informatics, Department of Computer Science & Institute for Bioinformatics and Medical Informatics (IBMI), University of Tübingen, Germany
+> Methods in Medical Informatics, Department of Computer Science & Institute for Bioinformatics and Medical Informatics (IBMI)<br>
+> University of Tübingen, Germany
+
 
 <p align="center">
   <img src="pipeline.svg" alt="Pipeline of the model inversion attack scenario on DNA Foundation Models" width="60%">
@@ -56,18 +59,6 @@ bash prepare_and_generate_all.sh
 Train inversion models and evaluate the reconstruction quality:
 ```bash
 bash run_experiments.sh
-```
-
-## Citation
-
-If you use this code in your research, please cite our paper:
-
-```bibtex
-@article{kreuer2026dna_embedding_inversion,
-  title   = {How Private Are DNA Embeddings? Inverting Foundation Model Representations of Genomic Sequences},
-  author  = {Kreuer, Jules and Ouaari, Sofiane and Pfeifer, Nico},
-  year    = {2026}
-}
 ```
 
 ## License
