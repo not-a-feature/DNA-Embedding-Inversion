@@ -1,5 +1,6 @@
 # How Private Are DNA Embeddings? Inverting Foundation Model Representations of Genomic Sequences
-
+[![DOI: 10.48550/arXiv.2603.06950](https://img.shields.io/badge/DOI-10.48550/arXiv.2603.06950-4caf50)](https://arxiv.org/abs/2603.06950) [![Citation Badge](https://api.juleskreuer.eu/citation-badge.php?doi=10.48550/arXiv.2603.06950)](https://juleskreuer.eu//projects/citation-badge)
+> [!NOTE]
 > **Authors:** Sofiane Ouaari*, Jules Kreuer* Nico Pfeifer<br>
 >  *: Shared first authorship.<br>
 >
@@ -22,6 +23,8 @@ DNA foundation models have become transformative tools in bioinformatics and hea
   Fig. 3. Mean-pooled reconstruction performance across sequence lengths for the encoder-only architecture: (a) Levenshtein similarity and (b) nucleotide accuracy.
 </p>
 
+## Preprint
+The full preprint can be found here: [arxiv.org/abs/2603.06950](https://arxiv.org/abs/2603.06950)
 ## Installation
 
 ```bash
