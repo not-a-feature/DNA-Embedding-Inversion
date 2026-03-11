@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Kreuer"
+  given-names: "Jules"
+  orcid: "https://orcid.org/0000-0002-7305-833X"
+- family-names: "Ouaari"
+  given-names: "Sofiane"
+  orcid: "https://orcid.org/0009-0000-0942-3796"
+- family-names: "Pfeifer"
+  given-names: "Nico"
+  orcid: "https://orcid.org/0000-0002-4647-8566"
+title: "How Private Are DNA Embeddings? Inverting Foundation Model Representations of Genomic Sequences"
+version: 0.1.0
+doi: 10.48550/arXiv.2603.06950
+date-released: 2026-03-06
+url: "https://github.com/not-a-feature/DNA-Embedding-Inversion"
