@@ -1,6 +1,7 @@
 # How Private Are DNA Embeddings? Inverting Foundation Model Representations of Genomic Sequences
 [![DOI: 10.48550/arXiv.2603.06950](https://img.shields.io/badge/DOI-10.48550/arXiv.2603.06950-4caf50)](https://arxiv.org/abs/2603.06950) [![Citation Badge](https://api.juleskreuer.eu/citation-badge.php?doi=10.48550/arXiv.2603.06950)](https://juleskreuer.eu//projects/citation-badge)
 > [!NOTE]
+> DOI: 10.48550/arXiv.2603.06950<br>
 > **Authors:** Sofiane Ouaari*, Jules Kreuer* Nico Pfeifer<br>
 >  *: Shared first authorship.<br>
 >
