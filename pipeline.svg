@@ -70,521 +70,117 @@
          id="path3" />
     </marker>
   </defs>
-  <rect
-     x="20"
-     y="60"
-     width="370"
-     height="420"
-     rx="8"
-     fill="#f8f9fa"
-     stroke="#bdc3c7"
-     stroke-width="1.5"
-     id="rect3" />
-  <text
-     x="35"
-     y="85"
-     font-size="14"
-     font-weight="bold"
-     fill="#2c3e50"
-     id="text3">Institution I₁ (Data Owner)</text>
-  <text
-     x="35"
-     y="40"
-     font-size="24"
-     font-weight="bold"
-     fill="#000000"
-     id="text4">a</text>
-  <text
-     x="60"
-     y="38"
-     font-size="16"
-     fill="#555555"
-     id="text5">Data preparation and Embedding</text>
-  <path
-     d="M 50 140 C 50 130, 150 130, 150 140 L 150 180 C 150 190, 50 190, 50 180 Z"
-     fill="#ecf0f1"
-     stroke="#7f8c8d"
-     stroke-width="1.5"
-     id="path5" />
-  <path
-     d="M 50 140 C 50 150, 150 150, 150 140"
-     fill="none"
-     stroke="#7f8c8d"
-     stroke-width="1.5"
-     id="path6" />
-  <text
-     x="100"
-     y="165"
-     font-size="12"
-     text-anchor="middle"
-     fill="#2c3e50"
-     id="text6">Patient Seq.</text>
-  <text
-     x="100"
-     y="180"
-     font-size="12"
-     text-anchor="middle"
-     fill="#2c3e50"
-     id="text7">Hg38</text>
-  <line
-     x1="100"
-     y1="190"
-     x2="100"
-     y2="250"
-     stroke="#333333"
-     stroke-width="2"
-     marker-end="url(#arrow)"
-     id="line7" />
-  <rect
-     x="40"
-     y="250"
-     width="120"
-     height="45"
-     rx="4"
-     fill="#ffffff"
-     stroke="#34495e"
-     stroke-width="1.5"
-     id="rect7" />
-  <text
-     x="100"
-     y="270"
-     font-size="13"
-     font-weight="bold"
-     text-anchor="middle"
-     fill="#2c3e50"
-     id="text8">DNA Sequence</text>
-  <text
-     x="100"
-     y="285"
-     font-size="11"
-     font-family="monospace"
-     text-anchor="middle"
-     fill="#555555"
-     id="text9">xᵢ ∈ {A,C,G,T}ˡ</text>
-  <line
-     x1="160"
-     y1="272"
-     x2="180"
-     y2="272"
-     stroke="#333333"
-     stroke-width="2"
-     marker-end="url(#arrow)"
-     id="line9" />
-  <rect
-     x="180"
-     y="210"
-     width="175"
-     height="115"
-     rx="4"
-     fill="#faf9f9"
-     stroke="#8e44ad"
-     stroke-width="1.5"
-     stroke-dasharray="4,4"
-     id="rect9" />
-  <rect
-     x="180"
-     y="210"
-     width="45"
-     height="20"
-     fill="#8e44ad"
-     rx="2"
-     id="rect10" />
-  <text
-     x="185"
-     y="224"
-     font-size="11"
-     font-weight="bold"
-     fill="#ffffff"
-     id="text10">EaaS</text>
-  <text
-     x="195"
-     y="260"
-     font-size="13"
-     font-weight="bold"
-     fill="#2980b9"
-     id="text11">Foundation Model (FM)</text>
-  <text
-     x="195"
-     y="280"
-     font-size="11"
-     fill="#333333"
-     id="text12">• DNABERT-2</text>
-  <text
-     x="195"
-     y="295"
-     font-size="11"
-     fill="#333333"
-     id="text13">• Evo 2</text>
-  <text
-     x="195"
-     y="310"
-     font-size="11"
-     fill="#333333"
-     id="text14">• Nucleotide Transformer</text>
-  <line
-     x1="355"
-     y1="272"
-     x2="415"
-     y2="272"
-     stroke="#333333"
-     stroke-width="2"
-     marker-end="url(#arrow)"
-     id="line14" />
-  <rect
-     x="415"
-     y="232"
-     width="90"
-     height="80"
-     rx="4"
-     fill="#eafaf1"
-     stroke="#27ae60"
-     stroke-width="1.5"
-     id="rect14" />
-  <text
-     x="460"
-     y="255"
-     font-size="13"
-     font-weight="bold"
-     text-anchor="middle"
-     fill="#27ae60"
-     id="text15">Embeddings</text>
-  <text
-     x="460"
-     y="270"
-     font-size="12"
-     font-style="italic"
-     text-anchor="middle"
-     fill="#27ae60"
-     id="text16">eᵢ = FM(xᵢ)</text>
-  <rect
-     x="435"
-     y="285"
-     width="10"
-     height="10"
-     fill="#abebc6"
-     stroke="#27ae60"
-     stroke-width="1"
-     id="rect16" />
-  <rect
-     x="445"
-     y="285"
-     width="10"
-     height="10"
-     fill="#abebc6"
-     stroke="#27ae60"
-     stroke-width="1"
-     id="rect17" />
-  <rect
-     x="455"
-     y="285"
-     width="10"
-     height="10"
-     fill="#abebc6"
-     stroke="#27ae60"
-     stroke-width="1"
-     id="rect18" />
-  <rect
-     x="465"
-     y="285"
-     width="10"
-     height="10"
-     fill="#abebc6"
-     stroke="#27ae60"
-     stroke-width="1"
-     id="rect19" />
-  <rect
-     x="475"
-     y="285"
-     width="10"
-     height="10"
-     fill="#abebc6"
-     stroke="#27ae60"
-     stroke-width="1"
-     id="rect20" />
-  <text
-     x="530"
-     y="40"
-     font-size="24"
-     font-weight="bold"
-     fill="#000000"
-     id="text20">b</text>
-  <text
-     x="555"
-     y="38"
-     font-size="16"
-     fill="#555555"
-     id="text21">Legitimate Use</text>
-  <rect
-     x="530"
-     y="60"
-     width="460"
-     height="125"
-     rx="8"
-     fill="#f0f8ff"
-     stroke="#3498db"
-     stroke-width="1.5"
-     id="rect21" />
-  <text
-     x="545"
-     y="85"
-     font-size="14"
-     font-weight="bold"
-     fill="#2980b9"
-     id="text22">Institution I₂ (Legitimate User)</text>
-  <path
-     d="M 460 232 L 460 135 L 575 135"
-     fill="none"
-     stroke="#333333"
-     stroke-width="2"
-     marker-end="url(#arrow)"
-     id="path22" />
-  <rect
-     x="575"
-     y="100"
-     width="140"
-     height="70"
-     rx="6"
-     fill="#ffffff"
-     stroke="#3498db"
-     stroke-width="1.5"
-     stroke-dasharray="4,4"
-     id="rect22" />
-  <text
-     x="645"
-     y="130"
-     font-size="13"
-     font-weight="bold"
-     text-anchor="middle"
-     fill="#2980b9"
-     id="text23">Downstream</text>
-  <text
-     x="645"
-     y="145"
-     font-size="13"
-     font-weight="bold"
-     text-anchor="middle"
-     fill="#2980b9"
-     id="text24">Model</text>
-  <line
-     x1="715"
-     y1="135"
-     x2="795"
-     y2="135"
-     stroke="#333333"
-     stroke-width="2"
-     marker-end="url(#arrow)"
-     id="line24" />
-  <rect
-     x="795"
-     y="115"
-     width="120"
-     height="40"
-     rx="4"
-     fill="#ffffff"
-     stroke="#7f8c8d"
-     stroke-width="1.5"
-     id="rect24" />
-  <text
-     x="855"
-     y="135"
-     font-size="12"
-     font-weight="bold"
-     text-anchor="middle"
-     fill="#2c3e50"
-     id="text25">Classification /</text>
-  <text
-     x="855"
-     y="149"
-     font-size="12"
-     font-weight="bold"
-     text-anchor="middle"
-     fill="#2c3e50"
-     id="text26">Regression Output</text>
-  <text
-     x="530"
-     y="224.70709"
-     font-size="24px"
-     font-weight="bold"
-     fill="#000000"
-     id="text27">c</text>
-  <text
-     x="555"
-     y="222.70709"
-     font-size="16px"
-     fill="#555555"
-     id="text28">Model Inversion Attack</text>
-  <rect
-     x="530"
-     y="234.70709"
-     width="460"
-     height="245"
-     rx="8"
-     fill="#fff5f5"
-     stroke="#e67e22"
-     stroke-width="1.5"
-     id="rect28" />
-  <text
-     x="545"
-     y="259.70706"
-     font-size="14px"
-     font-weight="bold"
-     fill="#d35400"
-     id="text29">Adversary (Intercepts Embeddings)</text>
-  <path
-     d="M 460 312 L 460 350 L 575 350"
-     fill="none"
-     stroke="#c0392b"
-     stroke-width="2"
-     stroke-dasharray="4,4"
-     marker-end="url(#arrow-intercept)"
-     id="path29" />
-  <text
-     x="464"
-     y="342"
-     font-size="11"
-     font-weight="bold"
-     font-style="italic"
-     fill="#c0392b"
-     id="text30">Interception</text>
-  <rect
-     x="575"
-     y="290"
-     width="185"
-     height="95"
-     rx="6"
-     fill="#fdedec"
-     stroke="#c0392b"
-     stroke-width="1.5"
-     stroke-dasharray="4, 4"
-     id="rect30" />
-  <text
-     x="585"
-     y="310"
-     font-size="13px"
-     font-weight="bold"
-     fill="#c0392b"
-     id="text31">Inversion Model (IM)</text>
-  <text
-     x="585"
-     y="335"
-     font-size="11px"
-     fill="#333333"
-     id="text32">• Transformer Enc/Dec</text>
-  <text
-     x="585"
-     y="350"
-     font-size="11px"
-     fill="#333333"
-     id="text33">• 1D ResNet</text>
-  <text
-     x="585"
-     y="364.70706"
-     font-size="11px"
-     fill="#333333"
-     id="text34">• Nearest Neighbour Lookup</text>
-  <line
-     x1="760"
-     y1="345"
-     x2="850"
-     y2="345"
-     stroke="#333333"
-     stroke-width="2"
-     marker-end="url(#arrow)"
-     id="line34" />
-  <text
-     x="800"
-     y="337"
-     font-size="11px"
-     font-weight="bold"
-     fill="#333333"
-     text-anchor="middle"
-     id="text35">Prediction</text>
-  <rect
-     x="850"
-     y="325"
-     width="120"
-     height="40"
-     rx="4"
-     fill="#ffffff"
-     stroke="#c0392b"
-     stroke-width="1.5"
-     id="rect35" />
-  <text
-     x="910"
-     y="344"
-     font-size="12px"
-     font-weight="bold"
-     text-anchor="middle"
-     fill="#c0392b"
-     id="text36">Reconstructed</text>
-  <text
-     x="910"
-     y="358"
-     font-size="12px"
-     text-anchor="middle"
-     fill="#c0392b"
-     id="text37">Sequence x̂ᵢ</text>
-  <rect
-     x="575"
-     y="400"
-     width="185"
-     height="70"
-     rx="4"
-     fill="#f4fbf9"
-     stroke="#16a085"
-     stroke-width="1.5"
-     id="rect37" />
-  <rect
-     x="575"
-     y="400"
-     width="75"
-     height="20"
-     fill="#16a085"
-     rx="2"
-     id="rect38" />
-  <text
-     x="580"
-     y="414"
-     font-size="11px"
-     font-weight="bold"
-     fill="#ffffff"
-     id="text38">Evaluation</text>
-  <text
-     x="667"
-     y="440"
-     font-size="12px"
-     font-weight="bold"
-     text-anchor="middle"
-     fill="#2c3e50"
-     id="text39">Reconstruction Metrics</text>
-  <text
-     x="668"
-     y="453"
-     font-size="11px"
-     text-anchor="middle"
-     fill="#555555"
-     id="text40">Levenshtein &amp; Nucleotide Acc.</text>
-  <path
-     d="M 100 295 L 100 440 L 575 440"
-     fill="none"
-     stroke="#7f8c8d"
-     stroke-width="1.5"
-     stroke-dasharray="4,4"
-     marker-end="url(#arrow-eval)"
-     id="path40" />
-  <text
-     x="110"
-     y="432"
-     font-size="11"
-     fill="#7f8c8d"
-     font-style="italic"
-     id="text41">Ground truth</text>
-  <path
-     d="m 910,365 v 70 H 760"
-     fill="none"
-     stroke="#7f8c8d"
-     stroke-width="1.5"
-     stroke-dasharray="4, 4"
-     marker-end="url(#arrow-eval)"
-     id="path41" />
+  <rect x="20" y="60" width="370" height="160" rx="8" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1.5" id="rect3" />
+  
+  <!-- Institution 1 Content -->
+  <text x="35" y="85" font-size="14" font-weight="bold" fill="#2c3e50">Institution I₁ (Data Owner)</text>
+
+  <path d="M 40 125 C 40 115, 140 115, 140 125 L 140 185 C 140 195, 40 195, 40 185 Z" fill="#ecf0f1" stroke="#7f8c8d" stroke-width="1.5" />
+  <path d="M 40 125 C 40 135, 140 135, 140 125" fill="none" stroke="#7f8c8d" stroke-width="1.5" />
+  
+  <text x="90" y="155" font-size="13" font-weight="bold" text-anchor="middle" fill="#000000">Patient Seq.</text>
+  <text x="90" y="175" font-size="11" font-family="monospace" text-anchor="middle" fill="#000000">xᵢ ∈ {A,C,G,T}ˡ</text>
+
+  <line x1="140" y1="155" x2="175" y2="155" stroke="#333333" stroke-width="2" marker-end="url(#arrow)" />
+
+  <rect x="175" y="100" width="175" height="105" rx="4" fill="#faf9f9" stroke="#8e44ad" stroke-width="1.5" stroke-dasharray="4,4" />
+  <rect x="175" y="100" width="45" height="20" fill="#8e44ad" rx="2" />
+  <text x="180" y="114" font-size="11" font-weight="bold" fill="#ffffff">EaaS</text>
+  <text x="185" y="140" font-size="13" font-weight="bold" fill="#2980b9">Foundation Model (FM)</text>
+  <text x="185" y="160" font-size="11" fill="#333333">• DNABERT-2</text>
+  <text x="185" y="175" font-size="11" fill="#333333">• Evo 2</text>
+  <text x="185" y="190" font-size="11" fill="#333333">• Nucleotide Transformer</text>
+
+  <line x1="350" y1="155" x2="415" y2="155" stroke="#333333" stroke-width="2" marker-end="url(#arrow)" />
+
+  <rect x="415" y="115" width="90" height="80" rx="4" fill="#eafaf1" stroke="#27ae60" stroke-width="1.5" />
+  <text x="460" y="138" font-size="13" font-weight="bold" text-anchor="middle" fill="#27ae60">Embeddings</text>
+  <text x="460" y="153" font-size="12" font-style="italic" text-anchor="middle" fill="#27ae60">eᵢ = FM(xᵢ)</text>
+  <rect x="435" y="168" width="10" height="10" fill="#abebc6" stroke="#27ae60" stroke-width="1" />
+  <rect x="445" y="168" width="10" height="10" fill="#abebc6" stroke="#27ae60" stroke-width="1" />
+  <rect x="455" y="168" width="10" height="10" fill="#abebc6" stroke="#27ae60" stroke-width="1" />
+  <rect x="465" y="168" width="10" height="10" fill="#abebc6" stroke="#27ae60" stroke-width="1" />
+  <rect x="475" y="168" width="10" height="10" fill="#abebc6" stroke="#27ae60" stroke-width="1" />
+
+  <!-- Institution 2 Content -->
+  <rect x="530" y="60" width="460" height="160" rx="8" fill="#f0f8ff" stroke="#3498db" stroke-width="1.5" />
+  <text x="545" y="85" font-size="14" font-weight="bold" fill="#2980b9">Institution I₂ (Legitimate User)</text>
+
+  <line x1="505" y1="155" x2="575" y2="155" stroke="#333333" stroke-width="2" marker-end="url(#arrow)" />
+
+  <rect x="575" y="120" width="140" height="70" rx="6" fill="#ffffff" stroke="#3498db" stroke-width="1.5" stroke-dasharray="4,4" />
+  <text x="645" y="150" font-size="13" font-weight="bold" text-anchor="middle" fill="#2980b9">Downstream</text>
+  <text x="645" y="165" font-size="13" font-weight="bold" text-anchor="middle" fill="#2980b9">Model</text>
+
+  <line x1="715" y1="155" x2="845" y2="155" stroke="#333333" stroke-width="2" marker-end="url(#arrow)" />
+
+  <rect x="845" y="135" width="120" height="40" rx="4" fill="#ffffff" stroke="#7f8c8d" stroke-width="1.5" />
+  <text x="905" y="155" font-size="12" font-weight="bold" text-anchor="middle" fill="#2c3e50">Classification /</text>
+  <text x="905" y="169" font-size="12" font-weight="bold" text-anchor="middle" fill="#2c3e50">Regression Output</text>
+
+  <!-- Adversary Content -->
+  <rect x="20" y="270" width="970" height="230" rx="8" fill="#fff5f5" stroke="#e67e22" stroke-width="1.5" />
+  
+  <text x="35" y="295" font-size="14" font-weight="bold" fill="#d35400">Adversary (Inversion Model Training &amp; Prediction)</text>
+
+  <!-- Bottom Left: Training -->
+  <path d="M 40 330 C 40 320, 140 320, 140 330 L 140 390 C 140 400, 40 400, 40 390 Z" fill="#ecf0f1" stroke="#7f8c8d" stroke-width="1.5" />
+  <path d="M 40 330 C 40 340, 140 340, 140 330" fill="none" stroke="#7f8c8d" stroke-width="1.5" />
+  
+  <text x="90" y="360" font-size="13px" font-weight="bold" text-anchor="middle" fill="#000000">Hg38</text>
+  <text x="90" y="380" font-size="11" font-family="monospace" text-anchor="middle" fill="#000000">xᵢ ∈ {A,C,G,T}ˡ</text>
+
+  <line x1="140" y1="360" x2="175" y2="360" stroke="#333333" stroke-width="2" marker-end="url(#arrow)" />
+
+  <rect x="175" y="315" width="175" height="105" rx="4" fill="#faf9f9" stroke="#8e44ad" stroke-width="1.5" stroke-dasharray="4,4" />
+  <rect x="175" y="315" width="45" height="20" fill="#8e44ad" rx="2" />
+  <text x="180" y="329" font-size="11" font-weight="bold" fill="#ffffff">EaaS</text>
+  <text x="185" y="355" font-size="13" font-weight="bold" fill="#2980b9">Foundation Model (FM)</text>
+  <text x="185" y="375" font-size="11" fill="#333333">• DNABERT-2</text>
+  <text x="185" y="390" font-size="11" fill="#333333">• Evo 2</text>
+  <text x="185" y="405" font-size="11" fill="#333333">• Nucleotide Transformer</text>
+
+  <line x1="350" y1="360" x2="415" y2="360" stroke="#333333" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- New Attacker Embeddings Box -->
+  <rect x="415" y="320" width="90" height="80" rx="4" fill="#eafaf1" stroke="#27ae60" stroke-width="1.5" />
+  <text x="460" y="343" font-size="13" font-weight="bold" text-anchor="middle" fill="#27ae60">Embeddings</text>
+  <text x="460" y="358" font-size="12" font-style="italic" text-anchor="middle" fill="#27ae60">eᵢ = FM(xᵢ)</text>
+  <rect x="435" y="373" width="10" height="10" fill="#abebc6" stroke="#27ae60" stroke-width="1" />
+  <rect x="445" y="373" width="10" height="10" fill="#abebc6" stroke="#27ae60" stroke-width="1" />
+  <rect x="455" y="373" width="10" height="10" fill="#abebc6" stroke="#27ae60" stroke-width="1" />
+  <rect x="465" y="373" width="10" height="10" fill="#abebc6" stroke="#27ae60" stroke-width="1" />
+  <rect x="475" y="373" width="10" height="10" fill="#abebc6" stroke="#27ae60" stroke-width="1" />
+
+  <line x1="505" y1="360" x2="575" y2="360" stroke="#333333" stroke-width="2" marker-end="url(#arrow)" />
+  <text x="540" y="353" font-size="11px" font-weight="bold" fill="#333333" text-anchor="middle">Training</text>
+
+  <!-- Center: Unified Inversion Model -->
+  <rect x="575" y="312" width="185" height="95" rx="6" fill="#fdedec" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4, 4" />
+  <text x="667" y="332" font-size="13px" font-weight="bold" text-anchor="middle" fill="#c0392b">Inversion Model (IM)</text>
+  <text x="585" y="357" font-size="11px" fill="#333333">• Transformer Enc/Dec</text>
+  <text x="585" y="372" font-size="11px" fill="#333333">• 1D ResNet</text>
+  <text x="585" y="387" font-size="11px" fill="#333333">• Nearest Neighbour Lookup</text>
+
+  <!-- Bottom: Evaluation -->
+  <line x1="667" y1="407" x2="667" y2="445" stroke="#333333" stroke-width="2" marker-end="url(#arrow)" />
+  <text x="675" y="429" font-size="11px" fill="#7f8c8d" font-style="italic">During Training</text>
+
+  <rect x="575" y="445" width="185" height="40" rx="4" fill="#f4fbf9" stroke="#16a085" stroke-width="1.5" />
+  <text x="667" y="463" font-size="12px" font-weight="bold" text-anchor="middle" fill="#2c3e50">Evaluation</text>
+  <text x="667" y="477" font-size="11px" text-anchor="middle" fill="#555555">Reconstruction Metrics</text>
+
+  <path d="M 90 400 L 90 465 L 575 465" fill="none" stroke="#7f8c8d" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrow-eval)" />
+  <text x="100" y="455" font-size="11" fill="#7f8c8d" font-style="italic">Ground truth</text>
+
+  <!-- Right: Prediction -->
+  <path d="M 460 195 L 460 250 L 667 250 L 667 312" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-intercept)" />
+  <text x="520" y="245" font-size="12" font-weight="bold" font-style="italic" fill="#c0392b">Interception</text>
+
+  <line x1="760" y1="360" x2="840" y2="360" stroke="#333333" stroke-width="2" marker-end="url(#arrow)" />
+  <text x="800" y="353" font-size="11px" font-weight="bold" fill="#333333" text-anchor="middle">Prediction</text>
+
+  <rect x="840" y="340" width="130" height="40" rx="4" fill="#ffffff" stroke="#c0392b" stroke-width="1.5" />
+  <text x="905" y="358" font-size="12px" font-weight="bold" text-anchor="middle" fill="#c0392b">Reconstructed</text>
+  <text x="905" y="372" font-size="12px" text-anchor="middle" fill="#c0392b">Sequence x̂ᵢ</text>
 </svg>
