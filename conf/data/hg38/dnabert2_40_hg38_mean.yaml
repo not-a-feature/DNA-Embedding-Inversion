@@ -1,0 +1,24 @@
+shuffle: true
+mean: true
+
+train_csv: data/hg38/train_dnabert2_40_hg38.h5
+val_csv: data/hg38/val_dnabert2_40_hg38.h5
+test_csv: data/hg38/test_dnabert2_40_hg38.h5
+
+embedding_dim: 768
+seq_length: 40
+
+skip_sha256_check: false
+normalization_method: standard
+subset_fraction: null
+
+tokenizer:
+  type: huggingface
+  model_name: "zhihan1996/DNABERT-2-117M"
+
+checkpoint: "zhihan1996/DNABERT-2-117M"
+
+# Auto-generated updates
+train_sha256: F1E7F78D0439C83420FC4E2574C7203D84BCC50ED67D91FB89AAB7B7A24C9470
+val_sha256: CB4171D92A71F7C2D334DF203DF6FC3DD07F61A7964AE0884951CFF73CA7192A
+test_sha256: 21CA636305097F79897A2546B0D3425F34D9798C123400A11D3ADE1670EAD63B

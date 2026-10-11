@@ -1,0 +1,26 @@
+{
+  "lengths": {
+    "25": {
+      "train": 100000,
+      "validation": 5000,
+      "test": 10000,
+      "exact_duplicates": 0,
+      "cross_split_exact_duplicates": 0
+    },
+    "50": {
+      "train": 100000,
+      "validation": 5000,
+      "test": 10000,
+      "exact_duplicates": 0,
+      "cross_split_exact_duplicates": 0
+    },
+    "100": {
+      "train": 100000,
+      "validation": 5000,
+      "test": 10000,
+      "exact_duplicates": 0,
+      "cross_split_exact_duplicates": 0
+    }
+  },
+  "coordinate_overlaps": 0
+}

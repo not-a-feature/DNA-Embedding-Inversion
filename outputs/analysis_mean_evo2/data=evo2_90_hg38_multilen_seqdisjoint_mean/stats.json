@@ -1,0 +1,17 @@
+{
+    "dataset": "evo2_90_hg38_multilen_seqdisjoint_mean",
+    "n_samples": 2000,
+    "avg_seq_len": 90.0,
+    "max_euclidean_dist": 6.522043704986572,
+    "embedding_dim": 4096,
+    "spearman_corr_cosine": 0.18434004951018473,
+    "spearman_corr_euclidean": 0.15263389102147687,
+    "entropy_mean": 1.8970607084117586,
+    "entropy_std": 0.08736714742381511,
+    "entropy_min": 0.9770802227727781,
+    "entropy_max": 1.9996437496778563,
+    "repetitiveness_mean": 0.23567816091954022,
+    "repetitiveness_std": 0.08043430138778511,
+    "frac_low_entropy_lt1.5": 0.0045,
+    "frac_low_kmer_lt0.3": 0.8475
+}

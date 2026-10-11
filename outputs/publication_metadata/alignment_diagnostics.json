@@ -1,0 +1,36 @@
+{
+  "job_id": "457762",
+  "source_log_sha256": "066061c585a819da00ac80d6bd789b83dc35e27e2ab4f302fc68e29f20142a07",
+  "per_model": {
+    "dnabert2": {
+      "random": {
+        "usable_queries": 6244011,
+        "total_queries": 8192000
+      },
+      "snp_enriched": {
+        "usable_queries": 6217491,
+        "total_queries": 8182000
+      }
+    },
+    "evo2": {
+      "random": {
+        "usable_queries": 8179495,
+        "total_queries": 8192000
+      },
+      "snp_enriched": {
+        "usable_queries": 8084499,
+        "total_queries": 8182000
+      }
+    },
+    "ntv2": {
+      "random": {
+        "usable_queries": 8089253,
+        "total_queries": 8192000
+      },
+      "snp_enriched": {
+        "usable_queries": 7991509,
+        "total_queries": 8182000
+      }
+    }
+  }
+}

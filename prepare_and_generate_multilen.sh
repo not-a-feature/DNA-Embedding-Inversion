@@ -1,9 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-# Coordinate- and sequence-disjoint multi-length data path. This pipeline first
-# creates one source HDF5 whose intervals are disjoint across every length/split
-# and which contains no repeated exact sequence within a length.
+# Generate embeddings from the prepared coordinate- and sequence-disjoint
+# source HDF5, with no repeated exact sequence within a length.
 
 MAX_JOBS=${MAX_JOBS:-3}
 NUM_GPUS=${NUM_GPUS:-3}
@@ -11,7 +10,6 @@ SLEEP_TIME=${SLEEP_TIME:-5}
 SEED=${SEED:-42}
 DATA_DIR=${DATA_DIR:-data/hg38_multilen_seqdisjoint}
 SOURCE_H5=${SOURCE_H5:-$DATA_DIR/hg38_multilen_seqdisjoint.h5}
-HG38_FASTA=${HG38_FASTA:-data/hg38.fa}
 LENGTHS=(10 15 20 25 30 35 40 45 50 60 70 80 90 100)
 FMS=(dnabert2 evo2 ntv2)
 VAL_SIZE=50000
@@ -42,18 +40,11 @@ generation_complete() {
 if source_complete "$SOURCE_H5"; then
     echo "[Ready] Cleaned source corpus: $SOURCE_H5"
 else
-    if [ -e "$SOURCE_H5" ]; then
-        echo "ERROR: $SOURCE_H5 exists but is incomplete. Move it aside first." >&2
-        exit 1
-    fi
-    echo "===== Building coordinate- and sequence-disjoint hg38 corpus ====="
-    python scripts/prepare_hg38_multilen.py \
-        --fasta "$HG38_FASTA" \
-        --output "$SOURCE_H5" \
-        --seed "$SEED" \
-        --val-size "$VAL_SIZE" \
-        --test-size "$TEST_SIZE"
-    source_complete "$SOURCE_H5"
+    echo "ERROR: a complete sequence-disjoint source corpus is required." >&2
+    echo "For a fresh corpus, run:" >&2
+    echo "  python scripts/prepare_hg38_multilen.py" >&2
+    echo "To reuse older multi-length embeddings instead, run scripts/build_seqdisjoint_embeddings.py." >&2
+    exit 1
 fi
 
 mkdir -p "$DATA_DIR"

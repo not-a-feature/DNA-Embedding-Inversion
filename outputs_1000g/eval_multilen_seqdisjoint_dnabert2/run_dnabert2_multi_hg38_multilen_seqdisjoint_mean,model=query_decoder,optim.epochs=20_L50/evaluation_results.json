@@ -1,0 +1,137 @@
+{
+  "run_dir": "outputs/train_multilen_seqdisjoint_dnabert2/data=hg38_multilen_seqdisjoint/dnabert2_multi_hg38_multilen_seqdisjoint_mean,model=query_decoder,optim.epochs=20",
+  "output_dir": "outputs_1000g/eval_multilen_seqdisjoint_dnabert2/run_dnabert2_multi_hg38_multilen_seqdisjoint_mean,model=query_decoder,optim.epochs=20_L50",
+  "evaluation_dataset": "1000g",
+  "test_data_path": "data/1000g_multilen_seqdisjoint/test_dnabert2_50_1000g_multilen_seqdisjoint.h5",
+  "seq_length": 50,
+  "inversion_model": "query_decoder",
+  "foundation_model": "dnabert2",
+  "accuracy_metrics": {
+    "exact_match": 0.0013333333333333333,
+    "avg_levenshtein_similarity": 0.5212363652099282,
+    "nucleotide_accuracy": 0.2665948397141303
+  },
+  "baseline_accuracy_metrics": {
+    "exact_match": 0.0,
+    "avg_levenshtein_similarity": 0.4198319999999826,
+    "nucleotide_accuracy": 0.25859333333333334
+  },
+  "improvement_over_baseline": {
+    "exact_match": 0.0,
+    "avg_levenshtein_similarity": 24.15355790172017,
+    "nucleotide_accuracy": 3.0942431027341284
+  },
+  "nucleotide_frequencies": {
+    "true": {
+      "A": 0.29448,
+      "C": 0.20559333333333332,
+      "G": 0.203752,
+      "T": 0.29617466666666664
+    },
+    "pred": {
+      "A": 0.2988112042145489,
+      "C": 0.2025462465151379,
+      "G": 0.19992258034244514,
+      "T": 0.29871996892786806
+    }
+  },
+  "num_sequences": 15000,
+  "levenshtein_mean": 0.5212363652099206,
+  "levenshtein_std": 0.11814036180487256,
+  "baseline_levenshtein_mean": 0.419832,
+  "baseline_levenshtein_std": 0.046753521535815884,
+  "accuracy_mean": 0.2698329440638973,
+  "accuracy_std": 0.11754632917382639,
+  "reconstruction_strata": {
+    "all": {
+      "num_sequences": 15000,
+      "fraction_of_evaluation": 1.0,
+      "accuracy_metrics": {
+        "exact_match": 0.0013333333333333333,
+        "avg_levenshtein_similarity": 0.5212363652099282,
+        "nucleotide_accuracy": 0.2665948397141303
+      },
+      "accuracy_mean": 0.2698329440638973,
+      "accuracy_std": 0.11754632917382639,
+      "levenshtein_mean": 0.5212363652099206,
+      "levenshtein_std": 0.11814036180487256,
+      "exact_match_rate": 0.0013333333333333333
+    },
+    "train_seen": {
+      "num_sequences": 5,
+      "fraction_of_evaluation": 0.0003333333333333333,
+      "accuracy_metrics": {
+        "exact_match": 0.0,
+        "avg_levenshtein_similarity": 0.5298775330153566,
+        "nucleotide_accuracy": 0.2175141242937853
+      },
+      "accuracy_mean": 0.22016457592383265,
+      "accuracy_std": 0.039748444259810646,
+      "levenshtein_mean": 0.5298775330153566,
+      "levenshtein_std": 0.04028468713505891,
+      "exact_match_rate": 0.0
+    },
+    "train_unseen": {
+      "num_sequences": 14995,
+      "fraction_of_evaluation": 0.9996666666666667,
+      "accuracy_metrics": {
+        "exact_match": 0.001333777925975325,
+        "avg_levenshtein_similarity": 0.5212334838602097,
+        "nucleotide_accuracy": 0.26661521752898704
+      },
+      "accuracy_mean": 0.2698495057071584,
+      "accuracy_std": 0.11756018486373307,
+      "levenshtein_mean": 0.5212334838602022,
+      "levenshtein_std": 0.11815766154372331,
+      "exact_match_rate": 0.001333777925975325
+    },
+    "reference_identical": {
+      "num_sequences": 14287,
+      "fraction_of_evaluation": 0.9524666666666667,
+      "accuracy_metrics": {
+        "exact_match": 0.0013298803107720306,
+        "avg_levenshtein_similarity": 0.521137150153631,
+        "nucleotide_accuracy": 0.26641782411680587
+      },
+      "accuracy_mean": 0.2696333263376827,
+      "accuracy_std": 0.11693661458458078,
+      "levenshtein_mean": 0.5211371501536252,
+      "levenshtein_std": 0.11759228137723259,
+      "exact_match_rate": 0.0013298803107720306
+    },
+    "variant_bearing": {
+      "num_sequences": 713,
+      "fraction_of_evaluation": 0.04753333333333333,
+      "accuracy_metrics": {
+        "exact_match": 0.001402524544179523,
+        "avg_levenshtein_similarity": 0.5232244234277232,
+        "nucleotide_accuracy": 0.2701539070619092
+      },
+      "accuracy_mean": 0.2738328577447213,
+      "accuracy_std": 0.12909341229103008,
+      "levenshtein_mean": 0.5232244234277231,
+      "levenshtein_std": 0.12861530627363243,
+      "exact_match_rate": 0.001402524544179523
+    },
+    "variant_bearing_train_unseen": {
+      "num_sequences": 708,
+      "fraction_of_evaluation": 0.0472,
+      "accuracy_metrics": {
+        "exact_match": 0.0014124293785310734,
+        "avg_levenshtein_similarity": 0.5231774381905225,
+        "nucleotide_accuracy": 0.27061907139291064
+      },
+      "accuracy_mean": 0.27421187103441685,
+      "accuracy_std": 0.1294262652718209,
+      "levenshtein_mean": 0.5231774381905222,
+      "levenshtein_std": 0.1290230315148681,
+      "exact_match_rate": 0.0014124293785310734
+    }
+  },
+  "total_inference_time": 4.7653892040252686,
+  "time_per_sequence": 0.00031769261360168455,
+  "shannon_entropy_mean": 1.872691885446719,
+  "repetitiveness_mean": 0.14613617021276598,
+  "predicted_shannon_entropy_mean": 1.6390189610925314,
+  "predicted_repetitiveness_mean": 0.6178801329858765
+}

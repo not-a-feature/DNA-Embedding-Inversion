@@ -77,6 +77,39 @@ def test_streamed_oracle_sweep_returns_all_requested_k_values():
     assert 0.0 <= diagonal <= 1.0
 
 
+def test_locus_blind_excludes_multiallelic_positions(tmp_path, monkeypatch):
+    """One single-ALT record per ALT still means the site is not biallelic.
+
+    Reconstruction writes each ALT onto the same reference base, so keeping two
+    records for one position would make the second overwrite the first.
+    """
+    vcf_dir = tmp_path / "vcfs"
+    vcf_dir.mkdir()
+    (vcf_dir / "chr1.vcf.gz").touch()
+    windows = [("chr1", 1, 25)]
+
+    def fake_run(cmd, **kwargs):
+        kwargs["stdout"].write(
+            "chr1\t5\tA\tG\t0|1\n"
+            "chr1\t10\tG\tA\t0|1\n"
+            "chr1\t10\tG\tC\t1|0\n"
+            "chr1\t20\tT\tC\t1|1\n"
+        )
+        return SimpleNamespace(returncode=0, stderr="")
+
+    monkeypatch.setattr("src.evaluation.locus_blind.subprocess.run", fake_run)
+    result = _fetch_cohort_snps_at_windows(
+        "bcftools",
+        str(vcf_dir),
+        windows,
+        ["sample-1"],
+        str(tmp_path),
+        logging.getLogger(__name__),
+    )
+
+    assert [record["pos"] for record in result[windows[0]]] == [5, 20]
+
+
 def test_locus_blind_bcftools_regions_use_file_not_argument_list(tmp_path, monkeypatch):
     """Large hit sets must not be expanded into the process argument vector."""
     vcf_dir = tmp_path / "vcfs"
@@ -103,6 +136,7 @@ def test_locus_blind_bcftools_regions_use_file_not_argument_list(tmp_path, monke
         windows,
         ["sample-1"],
         str(tmp_path),
+        logging.getLogger(__name__),
     )
 
     cmd = captured["cmd"]

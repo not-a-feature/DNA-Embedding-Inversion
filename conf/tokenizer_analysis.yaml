@@ -1,0 +1,35 @@
+###############################################
+# Hydra configuration for tokenizer analysis
+# Analyzes subword tokenization for DNABERT-2 and NTv2
+###############################################
+
+seed: 42
+
+# Number of random DNA sequences per sequence length
+n_samples: 500
+
+# Sequence lengths for the token-count-vs-length plot
+seq_lengths: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 125, 150, 175, 200]
+
+# Fixed sequence length for the token-length distribution plot
+fixed_length: 100
+
+hydra:
+  run:
+    dir: outputs/tokenizer_analysis-${now:%Y-%m-%d-%H-%M-%S}
+  sweep:
+    dir: outputs/tokenizer_analysis-${now:%Y-%m-%d-%H-%M-%S}
+    subdir: ${hydra.job.num}
+  job:
+    chdir: true
+  job_logging:
+    root:
+      level: INFO
+    handlers:
+      console:
+        class: logging.StreamHandler
+        formatter: simple
+        stream: ext://sys.stdout
+    formatters:
+      simple:
+        format: '%(asctime)s | %(levelname)s | %(message)s'

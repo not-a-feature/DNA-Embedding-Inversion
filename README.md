@@ -1,176 +1,67 @@
-# How Private Are DNA Embeddings?
+# How Private Are DNA Embeddings? Inverting Foundation Model Representations of Genomic Sequences
+[![DOI: 10.48550/arXiv.2603.06950](https://img.shields.io/badge/DOI-10.48550/arXiv.2603.06950-4caf50)](https://arxiv.org/abs/2603.06950) [![Citation Badge](https://api.juleskreuer.eu/citation-badge.php?doi=10.48550/arXiv.2603.06950)](https://juleskreuer.eu//projects/citation-badge) [![Model Weights Badge](https://img.shields.io/badge/Huggingface-Model%20Weights-ffd21e?logo=huggingface)](https://huggingface.co/not-a-feature/DNA_Embedding_Inversion)
+> [!NOTE]
+> DOI: 10.48550/arXiv.2603.06950<br>
+> **Authors:** Jules Kreuer*, Sofiane Ouaari*, Nico Pfeifer<br>
+>  *: Shared first authorship.<br>
+>
+> Methods in Medical Informatics, Department of Computer Science & Institute for Bioinformatics and Medical Informatics (IBMI)<br>
+> University of Tübingen, Germany
 
-This repository contains the reproducible benchmark pipeline for studying
-sequence reconstruction and individual re-identification from DNA foundation
-model embeddings. The current pipeline evaluates mean-pooled representations
-from DNABERT-2, Evo 2, and Nucleotide Transformer v2 (NTv2).
 
-> **Results status:** benchmark jobs for the sequence-disjoint revision are
-> still running. Numerical results, generated plots, and checkpoints are
-> intentionally omitted from this revision so that obsolete results are not
-> presented as current. All result directories are ignored by Git.
+## Overview
 
-## Benchmark design
+Code and results for [How Private Are DNA Embeddings?](https://arxiv.org/abs/2603.06950).
+We benchmark reconstruction from mean-pooled DNABERT-2, Evo 2 and NTv2
+embeddings. One Length-Conditioned Query Decoder (LCQD) per foundation model
+covers 14 sequence lengths, from 10 to 100 nucleotides. Evaluations use
+held-out hg38 windows, individual-specific 1000 Genomes sequences and
+cohort identification with known or alignment-inferred coordinates.
 
-The release benchmark:
+![LCQD reconstruction results](main_plot.png)
 
-1. constructs a coordinate- and sequence-disjoint hg38 corpus across sequence
-   lengths 10–100 bp;
-2. extracts mean-pooled embeddings from each foundation model;
-3. trains one multi-length Query Decoder per foundation model;
-4. evaluates reconstruction on held-out hg38 and real-individual 1000 Genomes
-   sequences; and
-5. evaluates cohort re-identification, including a locus-blind BWA-MEM attack.
+## Results
 
-The hg38 source corpus contains globally non-overlapping genomic intervals.
-Within each sequence length, exact sequence content is unique across the
-training, validation, and test splits. This prevents performance estimates from
-being inflated by coordinate or exact-sequence reuse.
+- [hg38 reconstruction and identification](outputs/README.md)
+- [1000 Genomes reconstruction](outputs_1000g/README.md)
+- [Layer sensitivity](outputs/layer_sensitivity_v1/README.md): four extraction
+  points per model, with 100,000 training sequences per length.
 
-![Benchmark pipeline](pipeline.svg)
+The repository includes metric summaries and plots. Raw data, embeddings and
+checkpoints are not included. For identification, a budget of `k` loci supplies
+`2k` haplotype embeddings. The known-coordinate attack is a reference comparison,
+not a formal upper bound on the alignment-based attack.
 
-## Repository layout
+## Run the benchmark
 
-- `train.py` and `evaluate.py`: Hydra entry points for model training and
-  reconstruction/identification evaluation.
-- `generate/`: embedding generators for DNABERT-2, Evo 2, and NTv2.
-- `src/`: datasets, models, training, evaluation, plotting, and resumable HDF5
-  generation utilities.
-- `conf/`: Hydra configurations for datasets, models, generation, training,
-  and evaluation.
-- `scripts/prepare_hg38_multilen.py`: builds the sequence-disjoint hg38 source
-  corpus.
-- `scripts/prepare_1000g_multilen.py`: constructs the real-individual 1000
-  Genomes out-of-distribution test corpus.
-- `scripts/prepare_identification.py`: constructs per-individual
-  identification cohorts.
-- `run_experiments_multilen.sh`: end-to-end benchmark runner.
-
-## Requirements
-
-The full benchmark requires:
-
-- Python 3.11;
-- a CUDA-capable PyTorch environment for embedding extraction and training;
-- `samtools` for the hg38 FASTA index;
-- `bcftools` for phased 1000 Genomes variants;
-- `bwa` for locus-blind identification;
-- an hg38 FASTA at `data/hg38.fa`; and
-- phased, indexed per-chromosome 1000 Genomes VCFs under
-  `data/1000g_vcfs/`.
-
-Install the Python dependencies:
+Install dependencies in an activated Python environment:
 
 ```bash
-conda create -n dna-inversion -y python=3.11
-conda activate dna-inversion
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 ```
 
-The foundation-model generators may additionally require their model-specific
-packages and access to the corresponding checkpoints.
-
-Prepare the reference indices:
+With hg38 and the foundation-model runtimes installed, run from Linux or WSL:
 
 ```bash
-samtools faidx data/hg38.fa
-bash scripts/build_bwa_index.sh
+python scripts/prepare_hg38_multilen.py \
+  --fasta data/hg38.fa \
+  --output data/hg38_multilen_seqdisjoint/hg38_multilen_seqdisjoint.h5
+MAX_JOBS=1 NUM_GPUS=1 bash run_experiments_multilen.sh
 ```
 
-Large source data, embeddings, checkpoints, logs, and generated results are not
-versioned in this repository.
+Population experiments also require `bcftools`, `bwa`, `samtools` and phased,
+reference-compatible VCFs at `data/1000g_vcfs/chr1.vcf.gz` through `chr22.vcf.gz`.
+Install the Evo 2 runtime separately. Check the configuration of linked model
+weights before use; the archive may contain weights from earlier releases.
 
-## Run the complete benchmark
-
-The complete pipeline is:
-
-```bash
-bash run_experiments_multilen.sh
-```
-
-It creates the sequence-disjoint hg38 corpus when absent, generates resumable
-embeddings, prepares the 1000 Genomes reconstruction and identification data,
-trains one Query Decoder per foundation model, evaluates all tasks, and creates
-cross-model comparison plots.
-
-The main resource controls can be supplied as environment variables:
-
-```bash
-MAX_JOBS=3 NUM_GPUS=3 MULTI_EPOCHS=20 BWA_THREADS=8 \
-  bash run_experiments_multilen.sh
-```
-
-Embedding generation is resumable at sample level. Re-running a preparation
-script continues compatible partial HDF5 files and skips complete files.
-
-## Run individual stages
-
-Build the hg38 source corpus and embeddings:
-
-```bash
-python scripts/prepare_hg38_multilen.py
-bash prepare_and_generate_multilen.sh
-```
-
-Prepare the 1000 Genomes evaluation datasets:
-
-```bash
-bash prepare_and_generate_1000g_multilen.sh
-bash prepare_and_generate_identification_multilen.sh --full
-```
-
-Train a multi-length Query Decoder:
-
-```bash
-python train.py -m \
-  data=hg38_multilen_seqdisjoint/ntv2_multi_hg38_multilen_seqdisjoint_mean \
-  model=query_decoder \
-  hydra.sweep.dir=outputs/train_multilen_seqdisjoint_ntv2 \
-  hydra.job.chdir=True
-```
-
-Evaluate held-out hg38 reconstruction:
-
-```bash
-python evaluate.py \
-  run_dir=outputs/train_multilen_seqdisjoint_ntv2 \
-  identification_only=false \
-  identification.enabled=false \
-  hydra.run.dir=outputs/eval_multilen_seqdisjoint_ntv2
-```
-
-See `conf/evaluate.yaml` and `run_experiments_multilen.sh` for the 1000
-Genomes and identification overrides.
-
-## Data format
-
-Embedding files are HDF5 files containing:
-
-- `sequences`: UTF-8 DNA sequences;
-- `embeddings`: mean-pooled embedding vectors; and
-- attributes describing the embedding dimension, sequence length, ordered
-  input hash, input count, and generation-completion state.
-
-The hg38 source corpus stores one group per sequence length under
-`/lengths/<L>`, with `sequences`, `chrom`, zero-based `start`, and
-deterministic `split` datasets.
-
-## Tests
-
-```bash
-pytest -q
-```
-
-## Citation
-
-If you use this software, cite:
-
-> Kreuer J, Ouaari S, Pfeifer N. *How Private Are DNA Embeddings? Inverting
-> Foundation Model Representations of Genomic Sequences.* 2026.
-> https://doi.org/10.48550/arXiv.2603.06950
-
-Machine-readable citation metadata is available in `CITATION.cff`.
+Benchmark code is in `src/`, `conf/`, `generate/`, `embedding_analysis/` and
+`scripts/`; regression tests are in `tests/`. Baseline architectures and
+`tokenizer_ablation/` support the preliminary experiments described in the paper.
 
 ## License
 
-This project is licensed under the GNU Lesser General Public License v2.1.
+This project is licensed under the [LGPL-2.1 License](LICENSE).
+
+## Acknowledgments
+
+This work was supported by the Carl Zeiss Stiftung Research Project "Certification and Foundations of Safe Machine Learning Systems in Healthcare", by the German Research Foundation (DFG) under Germany's Excellence Strategy—EXC number 2064/1—Project number 390727645, and by the German Federal Ministry of Research, Technology and Space (BMFTR) within the PrivateAIM project (funding number: 01ZZ2316D). The authors thank the International Max Planck Research School for Intelligent Systems (IMPRS-IS).

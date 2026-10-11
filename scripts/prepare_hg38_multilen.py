@@ -1,11 +1,14 @@
 """Build a coordinate- and sequence-disjoint hg38 corpus.
 
-A shuffled multiset of requested lengths is tiled over shuffled,
-non-overlapping reference blocks, and every candidate interval advances the
-genomic cursor. A candidate is accepted only if its exact sequence has not
-already been accepted at that length. Consequently no two rows overlap in
-coordinates and no exact sequence can occur in more than one
-train/validation/test split.
+The legacy :mod:`scripts.prepare_hg38` samples every sequence length
+independently.  That is useful as a reference implementation, but genomic
+windows from two different lengths can cover the same bases.  This script
+creates a separate ``hg38_multilen.h5`` source corpus in one pass: a shuffled
+multiset of requested lengths is tiled over shuffled, non-overlapping reference
+blocks, and every candidate interval advances the genomic cursor.  A candidate
+is accepted only if its exact sequence has not already been accepted at that
+length.  Consequently no two rows overlap in coordinates and no exact sequence
+can occur in more than one train/validation/test split.
 
 The output is a source corpus, not an embedding file.  It contains one group per
 length under ``/lengths/<L>`` with ``sequences``, ``chrom``, ``start`` (zero-based,

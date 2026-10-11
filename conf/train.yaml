@@ -5,8 +5,8 @@
 ###############################################
 
 defaults:
-  - data: hg38_multilen_seqdisjoint/dnabert2_multi_hg38_multilen_seqdisjoint_mean
-  - model: query_decoder
+  - data: hg38/dnabert2_100_hg38_per_token
+  - model: mlp_per_token
   - _self_
 
 
@@ -19,7 +19,7 @@ optim:
   # the denominator and is a standard transformer-stability value.
   eps: 1e-6
   # Default budget for a bare `python train.py`. The benchmark pipeline overrides
-  # this in run_experiments_multilen.sh (query_decoder = MULTI_EPOCHS) so the
+  # this in run_experiments_multilen.sh (multi-length query_decoder = MULTI_EPOCHS) so the
   # OneCycle anneal completes within the budget.
   epochs: 15
   batch_size: 32
@@ -53,7 +53,7 @@ train:
   use_wandb: false
   log_interval: 10000
   device: cuda:0
-
+  
   # Early stopping configuration.
   # IMPORTANT: must be disabled while optim.use_scheduler (OneCycleLR) is on.
   # OneCycle is a fixed-horizon schedule whose total_steps is sized to the full

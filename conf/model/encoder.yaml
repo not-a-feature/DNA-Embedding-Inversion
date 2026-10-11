@@ -3,11 +3,13 @@ model_name: encoder_mean
 model_type: encoder
 mode: mean  # Encoder supports both per_token and mean modes
 
-# Transformer architecture parameters
-d_model: 128
+# Transformer architecture parameters.
+# Capacity raised (d_model 256->384, layers 3->5, ff 1024->1536) because
+# mean-mode runs underfit (train~=val). ff kept at 4x d_model.
+d_model: 384
 nhead: 8
-num_layers: 6
-dim_feedforward: 512
+num_layers: 5
+dim_feedforward: 1536
 dropout: 0.1
 
 # Sequence parameters

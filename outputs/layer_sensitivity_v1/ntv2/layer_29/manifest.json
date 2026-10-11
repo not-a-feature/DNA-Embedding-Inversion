@@ -1,0 +1,265 @@
+{
+  "foundation_model": "ntv2",
+  "layer": "hidden_layer_29",
+  "paper_layer": true,
+  "source_sha256": "E2860795CA6D0997324F50846A7DA7291C7295BB593AE787FAF73861AE5AB9F2",
+  "training": {
+    "hydra": {
+      "run": {
+        "dir": "outputs/layer_sensitivity_v1/ntv2/layer_29/train"
+      },
+      "sweep": {
+        "dir": "outputs/train-${now:%Y-%m-%d-%H-%M-%S}",
+        "subdir": "${hydra.job.num}"
+      },
+      "launcher": {
+        "_target_": "hydra._internal.core_plugins.basic_launcher.BasicLauncher"
+      },
+      "sweeper": {
+        "_target_": "hydra._internal.core_plugins.basic_sweeper.BasicSweeper",
+        "max_batch_size": null,
+        "params": null
+      },
+      "help": {
+        "app_name": "${hydra.job.name}",
+        "header": "${hydra.help.app_name} is powered by Hydra.\n",
+        "footer": "Powered by Hydra (https://hydra.cc)\nUse --hydra-help to view Hydra specific help\n",
+        "template": "${hydra.help.header}\n== Configuration groups ==\nCompose your configuration from those groups (group=option)\n\n$APP_CONFIG_GROUPS\n\n== Config ==\nOverride anything in the config (foo.bar=value)\n\n$CONFIG\n\n${hydra.help.footer}\n"
+      },
+      "hydra_help": {
+        "template": "Hydra (${hydra.runtime.version})\nSee https://hydra.cc for more info.\n\n== Flags ==\n$FLAGS_HELP\n\n== Configuration groups ==\nCompose your configuration from those groups (For example, append hydra/job_logging=disabled to command line)\n\n$HYDRA_CONFIG_GROUPS\n\nUse '--cfg hydra' to Show the Hydra config.\n",
+        "hydra_help": "???"
+      },
+      "hydra_logging": {
+        "version": 1,
+        "formatters": {
+          "simple": {
+            "format": "[%(asctime)s][HYDRA] %(message)s"
+          }
+        },
+        "handlers": {
+          "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+            "stream": "ext://sys.stdout"
+          }
+        },
+        "root": {
+          "level": "INFO",
+          "handlers": [
+            "console"
+          ]
+        },
+        "loggers": {
+          "logging_example": {
+            "level": "DEBUG"
+          }
+        },
+        "disable_existing_loggers": false
+      },
+      "job_logging": {
+        "version": 1,
+        "formatters": {
+          "simple": {
+            "format": "%(asctime)s | %(levelname)s | %(message)s"
+          }
+        },
+        "handlers": {
+          "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+            "stream": "ext://sys.stdout"
+          },
+          "file": {
+            "class": "logging.FileHandler",
+            "formatter": "simple",
+            "filename": "${hydra.runtime.output_dir}/${hydra.job.name}.log"
+          }
+        },
+        "root": {
+          "level": "INFO",
+          "handlers": [
+            "console",
+            "file"
+          ]
+        },
+        "disable_existing_loggers": false
+      },
+      "env": {},
+      "mode": null,
+      "searchpath": [],
+      "callbacks": {},
+      "output_subdir": ".hydra",
+      "overrides": {
+        "hydra": [],
+        "task": [
+          "data=hg38_multilen_seqdisjoint/ntv2_multi_hg38_multilen_seqdisjoint_mean",
+          "model=query_decoder",
+          "optim.epochs=20",
+          "optim.num_workers=8",
+          "train.device=cuda:0",
+          "train.seed=42",
+          "train.use_wandb=false"
+        ]
+      },
+      "job": {
+        "name": "app",
+        "chdir": true,
+        "override_dirname": "data=hg38_multilen_seqdisjoint/ntv2_multi_hg38_multilen_seqdisjoint_mean,model=query_decoder,optim.epochs=20,optim.num_workers=8,train.device=cuda:0,train.seed=42,train.use_wandb=false",
+        "id": "???",
+        "num": "???",
+        "config_name": "train",
+        "env_set": {},
+        "env_copy": [],
+        "config": {
+          "override_dirname": {
+            "kv_sep": "=",
+            "item_sep": ",",
+            "exclude_keys": []
+          }
+        }
+      },
+      "runtime": {
+        "version": "1.3.2",
+        "version_base": "1.3",
+        "cwd": ".",
+        "config_sources": [
+          {
+            "path": "hydra.conf",
+            "schema": "pkg",
+            "provider": "hydra"
+          },
+          {
+            "path": "conf",
+            "schema": "file",
+            "provider": "main"
+          },
+          {
+            "path": "",
+            "schema": "structured",
+            "provider": "schema"
+          }
+        ],
+        "output_dir": "???",
+        "choices": {
+          "model": "query_decoder",
+          "data": "hg38_multilen_seqdisjoint/ntv2_multi_hg38_multilen_seqdisjoint_mean",
+          "hydra/env": "default",
+          "hydra/callbacks": null,
+          "hydra/job_logging": "default",
+          "hydra/hydra_logging": "default",
+          "hydra/hydra_help": "default",
+          "hydra/help": "default",
+          "hydra/sweeper": "basic",
+          "hydra/launcher": "basic",
+          "hydra/output": "default"
+        }
+      },
+      "verbose": false
+    },
+    "data": {
+      "shuffle": true,
+      "mean": true,
+      "multi": true,
+      "require_sequence_disjoint": true,
+      "source_schema": "dna_inversion_hg38_multilen_v2",
+      "source_corpus": "outputs/layer_sensitivity_v1/subset.h5",
+      "ood_source_corpus": "data/1000g_multilen_seqdisjoint/1000g_multilen_seqdisjoint.h5",
+      "artifact_dir": "outputs/layer_sensitivity_v1/ntv2/layer_29/embeddings",
+      "fm_slug": "ntv2",
+      "seq_lengths": [
+        25,
+        50,
+        100
+      ],
+      "train_seq_lengths": [
+        25,
+        50,
+        100
+      ],
+      "train_csvs": [
+        "outputs/layer_sensitivity_v1/ntv2/layer_29/embeddings/train_ntv2_25_hg38_layer_sensitivity.h5",
+        "outputs/layer_sensitivity_v1/ntv2/layer_29/embeddings/train_ntv2_50_hg38_layer_sensitivity.h5",
+        "outputs/layer_sensitivity_v1/ntv2/layer_29/embeddings/train_ntv2_100_hg38_layer_sensitivity.h5"
+      ],
+      "val_csvs": [
+        "outputs/layer_sensitivity_v1/ntv2/layer_29/embeddings/val_ntv2_25_hg38_layer_sensitivity.h5",
+        "outputs/layer_sensitivity_v1/ntv2/layer_29/embeddings/val_ntv2_50_hg38_layer_sensitivity.h5",
+        "outputs/layer_sensitivity_v1/ntv2/layer_29/embeddings/val_ntv2_100_hg38_layer_sensitivity.h5"
+      ],
+      "test_csvs": [
+        "outputs/layer_sensitivity_v1/ntv2/layer_29/embeddings/test_ntv2_25_hg38_layer_sensitivity.h5",
+        "outputs/layer_sensitivity_v1/ntv2/layer_29/embeddings/test_ntv2_50_hg38_layer_sensitivity.h5",
+        "outputs/layer_sensitivity_v1/ntv2/layer_29/embeddings/test_ntv2_100_hg38_layer_sensitivity.h5"
+      ],
+      "seq_length": 100,
+      "skip_sha256_check": true,
+      "normalization_method": "standard",
+      "subset_fraction": null,
+      "embedding_dim": 1024,
+      "tokenizer": {
+        "type": "huggingface",
+        "model_name": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species"
+      },
+      "checkpoint": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species"
+    },
+    "model": {
+      "model_file_name": "model/query_decoder.py",
+      "model_name": "query_decoder",
+      "model_type": "query_decoder",
+      "mode": "mean",
+      "d_model": 384,
+      "nhead": 8,
+      "num_layers": 6,
+      "dim_feedforward": 1536,
+      "dropout": 0.1,
+      "n_context_tokens": 16,
+      "aux_length_loss_weight": 0.5,
+      "output_dim": 4,
+      "hidden_dims": []
+    },
+    "optim": {
+      "lr": 0.001,
+      "weight_decay": 0.0001,
+      "eps": 1e-06,
+      "epochs": 20,
+      "batch_size": 32,
+      "num_workers": 8,
+      "grad_clip_norm": 1.0,
+      "use_scheduler": true,
+      "scheduler": {
+        "max_lr": 0.0005,
+        "pct_start": 0.3,
+        "anneal_strategy": "cos",
+        "div_factor": 25.0,
+        "final_div_factor": 10000.0
+      }
+    },
+    "train": {
+      "seed": 42,
+      "project": "dna-embedding-inversion",
+      "run_name": null,
+      "use_wandb": false,
+      "log_interval": 10000,
+      "device": "cuda:0",
+      "early_stopping": {
+        "enabled": false,
+        "patience": 5,
+        "min_delta": 1e-05
+      },
+      "max_val_samples": null,
+      "nan_backoff": {
+        "skip_frac_threshold": 0.02,
+        "lr_backoff": 0.5
+      }
+    }
+  },
+  "code_sha256": {
+    "scripts/layer_sensitivity.py": "0FC23D69343B77263E37767850E30D50D1B0E075664AB4D362A224A35E20CF75",
+    "scripts/layer_sensitivity_extract.py": "4364716F4106E9D7FBF3A1C29B850366AD921E97402B2E2FDC316BC333BC2A76",
+    "train.py": "FD1348C3375F6775812895590BCCF7F16378E0ED3C1469FDF7C819093C94CB81",
+    "evaluate.py": "20E48CA6DF303C4A54CB278D65423D0126FFCA57FAA09742A2A5A52F3A59F974",
+    "src/data.py": "6C67FD07335E236370D837CE91AA04370D23949A3BD7B0F4B8C2675909B30942",
+    "src/model/query_decoder.py": "835C977F1782AC5B3CC7F44B6EB1CF63E2AAE576F83CCD0F76B23FBF156FDC85"
+  }
+}

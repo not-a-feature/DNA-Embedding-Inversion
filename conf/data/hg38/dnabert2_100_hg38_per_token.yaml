@@ -1,0 +1,19 @@
+shuffle: true
+mean: false 
+
+# Expected HDF5 datasets: sequences (variable-length string), embeddings (variable-length float)
+train_csv: data/hg38/train_dnabert2_100_hg38_per_token.h5
+val_csv: data/hg38/val_dnabert2_100_hg38_per_token.h5
+test_csv: data/hg38/test_dnabert2_100_hg38_per_token.h5
+
+embedding_dim: 768
+seq_length: 100
+train_sha256: 93968753AF5BD864E60495EF811533C7957FF7886876AA903BF9C295A351FC48
+val_sha256: 472CCD39D54542F41BB3388B06B17EF435ABB4890594D566191DE734F39BF724
+test_sha256: 382E2012AF566C85BBAAC2087EF587A866F12E9C34FB7D914BA8BF5CB9158FDB
+skip_sha256_check: false
+normalization_method: standard
+subset_fraction: null
+tokenizer:
+  type: huggingface
+  model_name: "zhihan1996/DNABERT-2-117M"

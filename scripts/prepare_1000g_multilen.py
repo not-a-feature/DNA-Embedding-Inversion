@@ -2,8 +2,9 @@
 
 This script reads the test intervals from the sequence-disjoint hg38 corpus, assigns each
 interval to a random phased 1000 Genomes individual/haplotype, and applies that
-haplotype's biallelic SNPs. It therefore evaluates the trained decoder on real
-individual variation at loci that remain disjoint across sequence lengths.
+haplotype's biallelic SNPs.  It therefore evaluates the trained decoder on real
+individual variation at loci that remain disjoint across sequence lengths.  The
+legacy per-length ``prepare_1000g.py`` remains unchanged.
 """
 
 from __future__ import annotations

@@ -411,7 +411,7 @@ def evaluate_identification_block(
         assert os.path.exists(h5_abs), (
             f"Identification H5 missing for mode={locus_mode}: {h5_abs}. "
             f"Remove this mode from cfg.identification.modes or run "
-            f"prepare_and_generate_identification.sh --full first."
+            f"prepare_and_generate_identification_multilen.sh --full first."
         )
 
         logger.info(f"[identification] mode={locus_mode} loading {h5_abs}")

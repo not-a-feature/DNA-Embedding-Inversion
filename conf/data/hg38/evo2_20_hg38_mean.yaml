@@ -1,0 +1,21 @@
+shuffle: true
+mean: true
+
+train_csv: data/hg38/train_evo2_20_hg38.h5
+val_csv: data/hg38/val_evo2_20_hg38.h5
+test_csv: data/hg38/test_evo2_20_hg38.h5
+
+embedding_dim: 4096
+seq_length: 20
+
+skip_sha256_check: false
+normalization_method: standard
+subset_fraction: null
+
+tokenizer:
+  type: char
+
+# Auto-generated updates
+train_sha256: 950330CB2564484FBDA4F3A793D671BF40777947F19A6A51F2E7DC59FF3C714E
+val_sha256: EFC78926046BD7D07A87310693C52D0B60805E4038B442E8EB73D9FEBE0A4D9C
+test_sha256: 3DA8E1DB920CA1D4FE2928E4A3BC5EB1ADF5292AD9BAE640499F142AB77CE958

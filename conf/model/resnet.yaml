@@ -3,9 +3,11 @@ model_name: resnet_mean
 model_type: resnet
 mode: mean
 
-# ResNet architecture parameters
-d_model: 256
-n_blocks: 4
+# ResNet architecture parameters.
+# Capacity raised (d_model 256->384, blocks 4->6) because mean-mode runs
+# underfit (train~=val).
+d_model: 384
+n_blocks: 6
 kernel_size: 5
 dropout: 0.1
 

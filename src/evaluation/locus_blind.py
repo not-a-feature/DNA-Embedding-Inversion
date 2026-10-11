@@ -22,6 +22,7 @@ identification sweeps live in ``src.evaluation.identification``.
 from __future__ import annotations
 
 from bisect import bisect_right
+from itertools import groupby
 import logging
 import os
 import shutil
@@ -43,7 +44,7 @@ _BWA_SEED_LENGTH = 12
 
 def _which(name: str) -> str:
     path = shutil.which(name)
-    assert path is not None, f"{name} not on PATH; run init.sh to install it"
+    assert path is not None, f"{name} not on PATH; install it and activate the environment containing it"
     return path
 
 
@@ -211,11 +212,14 @@ def _fetch_cohort_snps_at_windows(
     windows: List[Tuple[str, int, int]],
     samples: List[str],
     workdir: str,
+    logger: logging.Logger,
 ) -> Dict[Tuple[str, int, int], List[Dict]]:
     """For each (chrom, start_1, end_1) window, return list of biallelic SNP records.
 
     Each record contains: pos (1-based int), ref, alt, and per-sample phased
-    genotype strings aligned to ``samples`` order.
+    genotype strings aligned to ``samples`` order. Positions carrying more than
+    one ALT are excluded, so every returned position is biallelic as a site and
+    not merely as a record.
     """
     samples_file = os.path.join(workdir, "cohort_samples.txt")
     with open(samples_file, "w") as f:
@@ -285,28 +289,47 @@ def _fetch_cohort_snps_at_windows(
         for _s, e in sorted_iv:
             max_end = max(max_end, e)
             prefix_max_end.append(max_end)
+        def parse(raw_line: str) -> Dict:
+            parts = raw_line.rstrip("\n").split("\t")
+            assert len(parts) == 4 + len(samples), (
+                f"Unexpected bcftools query line column count: got {len(parts)}, "
+                f"expected {4 + len(samples)}"
+            )
+            ref = parts[2].upper()
+            alt = parts[3].upper()
+            assert len(ref) == 1 and len(alt) == 1
+            return {
+                "pos": int(parts[1]),
+                "ref": ref,
+                "alt": alt,
+                "genotypes": parts[4:],
+            }
+
+        # A multiallelic site is stored as one single-ALT record per ALT, all at
+        # the same POS and all passing the TYPE="snp" && N_ALT=1 record filter.
+        # Haplotype reconstruction writes each ALT onto the same reference base,
+        # so the second record of such a site would overwrite the first ALT and
+        # no longer see its own REF. Drop these positions entirely rather than
+        # reconstructing one arbitrary ALT: bcftools emits in position order, so
+        # the records of one site are adjacent.
+        n_dropped = 0
         with open(query_output, "r") as query_in:
-            for raw_line in query_in:
-                line = raw_line.rstrip("\n")
-                if not line:
+            records = (parse(line) for line in query_in if line.strip())
+            for pos, site in groupby(records, key=lambda record: record["pos"]):
+                site_records = list(site)
+                if len(site_records) > 1:
+                    n_dropped += 1
                     continue
-                parts = line.split("\t")
-                assert len(parts) == 4 + len(samples), (
-                    f"Unexpected bcftools query line column count: got {len(parts)}, "
-                    f"expected {4 + len(samples)}"
-                )
-                pos = int(parts[1])
-                ref = parts[2].upper()
-                alt = parts[3].upper()
-                assert len(ref) == 1 and len(alt) == 1
-                gts = parts[4:]
-                record = {"pos": pos, "ref": ref, "alt": alt, "genotypes": gts}
                 idx = bisect_right(starts, pos) - 1
                 while idx >= 0 and prefix_max_end[idx] >= pos:
                     s, e = sorted_iv[idx]
                     if e >= pos:
-                        out[(chrom, s, e)].append(record)
+                        out[(chrom, s, e)].append(site_records[0])
                     idx -= 1
+        logger.info(
+            f"[locus-blind] {chrom}: dropped {n_dropped} multiallelic positions "
+            f"from candidate haplotype reconstruction"
+        )
         os.remove(query_output)
     return out
 
@@ -501,7 +524,7 @@ def compute_locus_blind_distances(
 
     logger.info("[locus-blind] fetching cohort SNPs at hit windows via bcftools ...")
     snps_by_window = _fetch_cohort_snps_at_windows(
-        bcftools, vcf_dir, windows_list, cohort_samples, workdir
+        bcftools, vcf_dir, windows_list, cohort_samples, workdir, logger
     )
 
     logger.info("[locus-blind] scoring queries vs cohort haplotypes ...")

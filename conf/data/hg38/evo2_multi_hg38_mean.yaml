@@ -1,0 +1,68 @@
+shuffle: true
+mean: true
+multi: true
+
+seq_lengths: [10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100]
+
+# Historical multi-length configuration: one train_csvs entry per seq_length.
+# The earlier corpus folded extra long-sequence rows into these base files;
+# there are no separate shards. val_csvs/test_csvs align with seq_lengths.
+train_seq_lengths: [10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100]
+
+train_csvs:
+  - data/hg38/train_evo2_10_hg38.h5
+  - data/hg38/train_evo2_15_hg38.h5
+  - data/hg38/train_evo2_20_hg38.h5
+  - data/hg38/train_evo2_25_hg38.h5
+  - data/hg38/train_evo2_30_hg38.h5
+  - data/hg38/train_evo2_35_hg38.h5
+  - data/hg38/train_evo2_40_hg38.h5
+  - data/hg38/train_evo2_45_hg38.h5
+  - data/hg38/train_evo2_50_hg38.h5
+  - data/hg38/train_evo2_60_hg38.h5
+  - data/hg38/train_evo2_70_hg38.h5
+  - data/hg38/train_evo2_80_hg38.h5
+  - data/hg38/train_evo2_90_hg38.h5
+  - data/hg38/train_evo2_100_hg38.h5
+
+val_csvs:
+  - data/hg38/val_evo2_10_hg38.h5
+  - data/hg38/val_evo2_15_hg38.h5
+  - data/hg38/val_evo2_20_hg38.h5
+  - data/hg38/val_evo2_25_hg38.h5
+  - data/hg38/val_evo2_30_hg38.h5
+  - data/hg38/val_evo2_35_hg38.h5
+  - data/hg38/val_evo2_40_hg38.h5
+  - data/hg38/val_evo2_45_hg38.h5
+  - data/hg38/val_evo2_50_hg38.h5
+  - data/hg38/val_evo2_60_hg38.h5
+  - data/hg38/val_evo2_70_hg38.h5
+  - data/hg38/val_evo2_80_hg38.h5
+  - data/hg38/val_evo2_90_hg38.h5
+  - data/hg38/val_evo2_100_hg38.h5
+
+test_csvs:
+  - data/hg38/test_evo2_10_hg38.h5
+  - data/hg38/test_evo2_15_hg38.h5
+  - data/hg38/test_evo2_20_hg38.h5
+  - data/hg38/test_evo2_25_hg38.h5
+  - data/hg38/test_evo2_30_hg38.h5
+  - data/hg38/test_evo2_35_hg38.h5
+  - data/hg38/test_evo2_40_hg38.h5
+  - data/hg38/test_evo2_45_hg38.h5
+  - data/hg38/test_evo2_50_hg38.h5
+  - data/hg38/test_evo2_60_hg38.h5
+  - data/hg38/test_evo2_70_hg38.h5
+  - data/hg38/test_evo2_80_hg38.h5
+  - data/hg38/test_evo2_90_hg38.h5
+  - data/hg38/test_evo2_100_hg38.h5
+
+embedding_dim: 4096
+seq_length: 100
+
+skip_sha256_check: true
+normalization_method: standard
+subset_fraction: null
+
+tokenizer:
+  type: char

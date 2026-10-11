@@ -9,7 +9,7 @@ set -euo pipefail
 REFERENCE="data/hg38.fa"
 
 if ! command -v bwa >/dev/null 2>&1; then
-    echo "ERROR: bwa not on PATH. Activate the project conda env (init.sh installs it)." >&2
+    echo "ERROR: bwa not on PATH. Install bwa and activate the environment containing it." >&2
     exit 1
 fi
 

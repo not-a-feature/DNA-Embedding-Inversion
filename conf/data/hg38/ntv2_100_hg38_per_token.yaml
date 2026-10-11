@@ -1,0 +1,19 @@
+shuffle: true
+mean: false 
+
+# Expected HDF5 datasets: sequences (variable-length string), embeddings (variable-length float)
+train_csv: data/hg38/train_ntv2_100_hg38_per_token.h5
+val_csv: data/hg38/val_ntv2_100_hg38_per_token.h5
+test_csv: data/hg38/test_ntv2_100_hg38_per_token.h5
+
+embedding_dim: 1024
+seq_length: 100
+train_sha256: CA35647E5752C28EC76EF8305D79230FFCCCDC3451B03A68F6F3625131EA00C2
+val_sha256: CBF2B206E42C6E3C92F47F8ADF76852270C7B8E7CFA3C0658AD70DDCEC6EBF96
+test_sha256: 67006DA1B719A2F7BD5B4C07B75C67695FC81AB839F9789C7FE6DB1B50A9BB43
+skip_sha256_check: false
+normalization_method: standard
+subset_fraction: null
+tokenizer:
+  type: huggingface
+  model_name: "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species"

@@ -9,6 +9,10 @@ from scripts.prepare_hg38_multilen import (
     build_multilen_corpus,
     deterministic_split_codes,
 )
+from scripts.build_seqdisjoint_embeddings import (
+    build_clean_source,
+    seed_embedding_prefix,
+)
 from scripts.prepare_1000g_multilen import write_group
 from scripts.prepare_identification import load_multilen_test_candidates
 from src.generation_io import (
@@ -134,4 +138,97 @@ def test_multilen_ood_path_redirects_to_real_data_directory():
     )
 
 
+def test_standalone_migration_copies_prefix_and_regular_writer_resumes(
+    tmp_path: Path,
+):
+    fasta = tmp_path / "tiny.fa"
+    rng = np.random.default_rng(9)
+    reference = "AAAAA" * 4 + "CCCCC" * 4 + "".join(
+        rng.choice(list("ACGT"), size=1000)
+    )
+    _write_indexed_fasta(fasta, reference)
 
+    old_dir = tmp_path / "old"
+    new_dir = tmp_path / "new"
+    old_dir.mkdir()
+    old_source = old_dir / "hg38_multilen.h5"
+    target = 12
+    old_sequences = [reference[i * 5 : (i + 1) * 5] for i in range(target)]
+    old_labels = deterministic_split_codes(target, val_size=2, test_size=2, seed=42)
+    with h5py.File(old_source, "w") as handle:
+        handle.attrs["schema"] = "dna_inversion_hg38_multilen_v1"
+        root = handle.create_group("lengths")
+        group = root.create_group("5")
+        group.create_dataset(
+            "sequences",
+            data=np.asarray([value.encode("ascii") for value in old_sequences], dtype="S5"),
+        )
+        group.create_dataset("chrom", data=np.asarray([b"chr1"] * target, dtype="S16"))
+        group.create_dataset(
+            "start", data=np.arange(0, target * 5, 5, dtype=np.uint32)
+        )
+        group.create_dataset("split", data=old_labels)
+        group.attrs["target_count"] = target
+
+    for split, code in (("train", 0), ("val", 1), ("test", 2)):
+        indices = np.flatnonzero(old_labels == code)
+        path = old_dir / f"{split}_dnabert2_5_hg38_multilen.h5"
+        with h5py.File(path, "w") as handle:
+            handle.create_dataset(
+                "sequences",
+                data=np.asarray(
+                    [old_sequences[index].encode("ascii") for index in indices],
+                    dtype="S5",
+                ),
+            )
+            handle.create_dataset(
+                "embeddings",
+                data=np.asarray([[index, index + 1, index + 2] for index in indices], dtype=np.float32),
+            )
+
+    clean_source = new_dir / "hg38_multilen_seqdisjoint.h5"
+    prefix_counts = build_clean_source(
+        old_source_path=str(old_source),
+        output_path=str(clean_source),
+        fasta_path=str(fasta),
+        seed=42,
+        val_size=2,
+        test_size=2,
+        chunk_size=4,
+        scan_block_size=100,
+    )
+    assert 0 < prefix_counts[5] < target
+    seed_embedding_prefix(
+        clean_source_path=str(clean_source),
+        old_data_dir=str(old_dir),
+        new_data_dir=str(new_dir),
+        foundation_model="dnabert2",
+        length=5,
+        copy_chunk_size=4,
+    )
+
+    out_paths = {
+        split: str(new_dir / f"{split}_dnabert2_5_hg38_multilen_seqdisjoint.h5")
+        for split in ("train", "val", "test")
+    }
+    assert sum(
+        len(h5py.File(path, "r")["sequences"]) for path in out_paths.values()
+    ) == prefix_counts[5]
+    clean_sequences = load_sequences_from_file(str(clean_source), max_length=5)
+    generate_split_h5_resumable(
+        sequences=clean_sequences,
+        embed_chunk=lambda values: [np.full(3, len(value), dtype=np.float32) for value in values],
+        out_paths=out_paths,
+        embedding_dim=3,
+        checkpoint="test",
+        train_split=0.8,
+        val_split=0.1,
+        seed=42,
+        chunk_size=3,
+        logger=__import__("logging").getLogger(__name__),
+        val_size=2,
+        test_size=2,
+    )
+    assert len(set(clean_sequences)) == target
+    with h5py.File(out_paths["train"], "r") as handle:
+        assert bool(handle.attrs["generation_complete"])

@@ -1,0 +1,24 @@
+shuffle: true
+mean: true
+
+train_csv: data/hg38/train_ntv2_80_hg38.h5
+val_csv: data/hg38/val_ntv2_80_hg38.h5
+test_csv: data/hg38/test_ntv2_80_hg38.h5
+
+embedding_dim: 1024
+seq_length: 80
+
+skip_sha256_check: false
+normalization_method: standard
+subset_fraction: null
+
+tokenizer:
+  type: huggingface
+  model_name: "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species"
+
+checkpoint: "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species"
+
+# Auto-generated updates
+train_sha256: 906DE81BED413D0F970EA799DD175C39D647A6BB54888BBA4989A8ED18CC76AF
+val_sha256: E2C0ECE4251456772B64937A509AB4DC9C5554D66D20F72BB9400F9FE1B16FA1
+test_sha256: 13595D180563634B77536AF4990B3A4B5FEAAE809C5B7461A55EB2E271E2CE38

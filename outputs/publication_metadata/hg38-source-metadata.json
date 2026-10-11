@@ -1,0 +1,259 @@
+{
+  "path": "data/hg38_multilen_seqdisjoint/hg38_multilen_seqdisjoint.h5",
+  "attributes": {
+    "coordinate_system": "0-based half-open",
+    "cross_length_coordinate_overlap": "False",
+    "generation_complete": "True",
+    "num_sequences": "33000000",
+    "reference": "data/hg38.fa",
+    "schema": "dna_inversion_hg38_multilen_v2",
+    "seed": "42",
+    "sequence_content_deduplicated": "True",
+    "sequence_content_split_disjoint": "True",
+    "sequence_content_unique_per_length": "True",
+    "source_corpus": "data/hg38_multilen/hg38_multilen.h5",
+    "split_names": "[\"train\", \"val\", \"test\"]",
+    "test_size_per_length": "50000",
+    "val_size_per_length": "50000"
+  },
+  "lengths": {
+    "10": {
+      "rows": 1000000,
+      "attributes": {
+        "new_unique_suffix_count": "548083",
+        "num_unique_sequences": "1000000",
+        "ordered_sequence_sha256": "a8d4aabcab7c00facd681ff318dccdc15126e46efa835971fbbea40abdc112e0",
+        "reused_unique_prefix_count": "451917",
+        "seq_length": "10",
+        "target_count": "1000000"
+      },
+      "keys": [
+        "chrom",
+        "sequences",
+        "split",
+        "start"
+      ]
+    },
+    "100": {
+      "rows": 4000000,
+      "attributes": {
+        "new_unique_suffix_count": "14829",
+        "num_unique_sequences": "4000000",
+        "ordered_sequence_sha256": "7c3ce6bc9aec7bd4b20009dc9ae18857333463550a664484b9759702dcf1fb0b",
+        "reused_unique_prefix_count": "3985171",
+        "seq_length": "100",
+        "target_count": "4000000"
+      },
+      "keys": [
+        "chrom",
+        "sequences",
+        "split",
+        "start"
+      ]
+    },
+    "15": {
+      "rows": 1000000,
+      "attributes": {
+        "new_unique_suffix_count": "71685",
+        "num_unique_sequences": "1000000",
+        "ordered_sequence_sha256": "401ea0eee9c92b243ca0248c4cd31234605194535d18ce08f15a25fa9ac87aba",
+        "reused_unique_prefix_count": "928315",
+        "seq_length": "15",
+        "target_count": "1000000"
+      },
+      "keys": [
+        "chrom",
+        "sequences",
+        "split",
+        "start"
+      ]
+    },
+    "20": {
+      "rows": 1000000,
+      "attributes": {
+        "new_unique_suffix_count": "42480",
+        "num_unique_sequences": "1000000",
+        "ordered_sequence_sha256": "c00da86e6055a80a1616cdd41fb5d98dd81fe8471c241fb150611957042dd754",
+        "reused_unique_prefix_count": "957520",
+        "seq_length": "20",
+        "target_count": "1000000"
+      },
+      "keys": [
+        "chrom",
+        "sequences",
+        "split",
+        "start"
+      ]
+    },
+    "25": {
+      "rows": 2000000,
+      "attributes": {
+        "new_unique_suffix_count": "73617",
+        "num_unique_sequences": "2000000",
+        "ordered_sequence_sha256": "e3241eea72d72f7a8e0d9010a28820d50c3272918ffcb2777e4002eedb8cc893",
+        "reused_unique_prefix_count": "1926383",
+        "seq_length": "25",
+        "target_count": "2000000"
+      },
+      "keys": [
+        "chrom",
+        "sequences",
+        "split",
+        "start"
+      ]
+    },
+    "30": {
+      "rows": 2000000,
+      "attributes": {
+        "new_unique_suffix_count": "50240",
+        "num_unique_sequences": "2000000",
+        "ordered_sequence_sha256": "05b318480d6e3db16b79578ca9bef429e9a3959957372f4309de6e613a0d3778",
+        "reused_unique_prefix_count": "1949760",
+        "seq_length": "30",
+        "target_count": "2000000"
+      },
+      "keys": [
+        "chrom",
+        "sequences",
+        "split",
+        "start"
+      ]
+    },
+    "35": {
+      "rows": 2000000,
+      "attributes": {
+        "new_unique_suffix_count": "34531",
+        "num_unique_sequences": "2000000",
+        "ordered_sequence_sha256": "3d35852164f4fe8466b4abfac7c9a1f139b5406fb100443be35f82062cf084bd",
+        "reused_unique_prefix_count": "1965469",
+        "seq_length": "35",
+        "target_count": "2000000"
+      },
+      "keys": [
+        "chrom",
+        "sequences",
+        "split",
+        "start"
+      ]
+    },
+    "40": {
+      "rows": 2000000,
+      "attributes": {
+        "new_unique_suffix_count": "25160",
+        "num_unique_sequences": "2000000",
+        "ordered_sequence_sha256": "ec65d26052d942d9b935f27b37eb118835d998faa4b2cfc9b3e920f1d013a259",
+        "reused_unique_prefix_count": "1974840",
+        "seq_length": "40",
+        "target_count": "2000000"
+      },
+      "keys": [
+        "chrom",
+        "sequences",
+        "split",
+        "start"
+      ]
+    },
+    "45": {
+      "rows": 2000000,
+      "attributes": {
+        "new_unique_suffix_count": "18625",
+        "num_unique_sequences": "2000000",
+        "ordered_sequence_sha256": "b14bbee76f0dfebff1cb8baf2cbbad00f4f3f9b7b9503fcdea32c293226375fc",
+        "reused_unique_prefix_count": "1981375",
+        "seq_length": "45",
+        "target_count": "2000000"
+      },
+      "keys": [
+        "chrom",
+        "sequences",
+        "split",
+        "start"
+      ]
+    },
+    "50": {
+      "rows": 3000000,
+      "attributes": {
+        "new_unique_suffix_count": "29185",
+        "num_unique_sequences": "3000000",
+        "ordered_sequence_sha256": "9f1a12bb9bfd3fba41055d6ce07ac64d1be260e316c6c5e280dc4334c18cac4d",
+        "reused_unique_prefix_count": "2970815",
+        "seq_length": "50",
+        "target_count": "3000000"
+      },
+      "keys": [
+        "chrom",
+        "sequences",
+        "split",
+        "start"
+      ]
+    },
+    "60": {
+      "rows": 3000000,
+      "attributes": {
+        "new_unique_suffix_count": "20979",
+        "num_unique_sequences": "3000000",
+        "ordered_sequence_sha256": "8f91fd36969a9a063322bb7c338e891bf741c2fbc4eba6357ea630b9626c966f",
+        "reused_unique_prefix_count": "2979021",
+        "seq_length": "60",
+        "target_count": "3000000"
+      },
+      "keys": [
+        "chrom",
+        "sequences",
+        "split",
+        "start"
+      ]
+    },
+    "70": {
+      "rows": 3000000,
+      "attributes": {
+        "new_unique_suffix_count": "16789",
+        "num_unique_sequences": "3000000",
+        "ordered_sequence_sha256": "59fc4e55b890c7c3c05eb8afc4e83f5921b9265da179d6204843b7e81678073a",
+        "reused_unique_prefix_count": "2983211",
+        "seq_length": "70",
+        "target_count": "3000000"
+      },
+      "keys": [
+        "chrom",
+        "sequences",
+        "split",
+        "start"
+      ]
+    },
+    "80": {
+      "rows": 3000000,
+      "attributes": {
+        "new_unique_suffix_count": "13088",
+        "num_unique_sequences": "3000000",
+        "ordered_sequence_sha256": "06efeabe6503e041bba62098c78ec82f0679a5d68290fdfbfb51ca63112e5d57",
+        "reused_unique_prefix_count": "2986912",
+        "seq_length": "80",
+        "target_count": "3000000"
+      },
+      "keys": [
+        "chrom",
+        "sequences",
+        "split",
+        "start"
+      ]
+    },
+    "90": {
+      "rows": 4000000,
+      "attributes": {
+        "new_unique_suffix_count": "17871",
+        "num_unique_sequences": "4000000",
+        "ordered_sequence_sha256": "11c16f44add70e9eb2debc1cee9494ba91e2a6b573f2db28c6cefa23e5ecb68c",
+        "reused_unique_prefix_count": "3982129",
+        "seq_length": "90",
+        "target_count": "4000000"
+      },
+      "keys": [
+        "chrom",
+        "sequences",
+        "split",
+        "start"
+      ]
+    }
+  }
+}

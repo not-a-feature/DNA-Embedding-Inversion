@@ -1,0 +1,28 @@
+{
+  "data": {
+    "mean": true,
+    "embedding_dim": 1024,
+    "seq_length": 30,
+    "skip_sha256_check": true,
+    "require_sequence_disjoint": true,
+    "source_schema": "dna_inversion_hg38_multilen_v2",
+    "source_corpus": "data/hg38_multilen_seqdisjoint/hg38_multilen_seqdisjoint.h5",
+    "train_csv": "data/hg38_multilen_seqdisjoint/train_ntv2_30_hg38_multilen_seqdisjoint.h5",
+    "val_csv": "data/hg38_multilen_seqdisjoint/val_ntv2_30_hg38_multilen_seqdisjoint.h5",
+    "test_csv": "data/hg38_multilen_seqdisjoint/test_ntv2_30_hg38_multilen_seqdisjoint.h5"
+  },
+  "analysis": {
+    "splits": [
+      "test"
+    ],
+    "subsample": 2000,
+    "seed": 42,
+    "n_neighbors": 15,
+    "min_dist": 0.1
+  },
+  "ordered_sequence_sha256": "05b318480d6e3db16b79578ca9bef429e9a3959957372f4309de6e613a0d3778",
+  "job_id": "458291",
+  "array_index": 32,
+  "script_sha256": "c2962cabdd07281f24e1fb47b4b61100fafe8dcee7f35b92183e6b6d26455394",
+  "analysis_script_sha256": "1bd376265387f89269e85ba4d4cc37b7529c5f1c817b52ddf62f3028b1ef7e8b"
+}

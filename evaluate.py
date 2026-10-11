@@ -874,7 +874,7 @@ def evaluate_single_run(
     be specified — the matching per-length test file is selected from the run's
     multi config and the same trained model is evaluated against it. Each
     invocation evaluates exactly one length; the caller is expected to loop
-    externally if multiple lengths are needed (e.g. in run_experiments.sh).
+    externally if multiple lengths are needed (as the multi-length evaluation dispatcher does).
     """
     logger.info(f"Evaluating run: {run_dir}")
 

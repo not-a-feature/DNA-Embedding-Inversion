@@ -1,44 +1,10 @@
-# Generated data and model artifacts
-data/**/*.h5
-data/**/*.csv
-data/**/*.manifest.json
-data/**/*.vcf
-data/**/*.vcf.gz
-data/**/*.tbi
-data/1000g_vcfs/
+data/*.h5
+data/*.csv
 data/*.fa
-data/*.fa.*
-data/*.bed
-data/*.bed.gz
-data/*.bb
-outputs*/
-tokenizer_ablation/outputs/
+data/*.fa.fai
 model.pt
-*.pt
-*.pth
-*.ckpt
-*.npy
-*.npz
-*.pdf
-*.png
-*_results.json
-evaluation_results.json
-comparison_metrics.json
-.hydra/
-wandb/
-mlruns/
 
-# Manuscript and generated figures
-tex/
-*.tex
-*.bib
-
-# Scheduler and runtime logs
-*.out
-*.err
-*.log
-prepare.log
-backups/
+# Generated .gitignore patterns
 
 # Python
 __pycache__/
@@ -57,30 +23,95 @@ var/
 wheels/
 *.egg-info/
 .installed.cfg
+*.egg
 htmlcov/
 .tox/
 .coverage
-.cache/
+.cache
 .pytest_cache/
-.mypy_cache/
-.ruff_cache/
 .env
-.venv/
+.venv
 env/
 venv/
-.ipynb_checkpoints/
+.ipynb_checkpoints
+.mypy_cache/
+.ruff_cache/
 
-# Editor and dependency caches
-.vscode/
-.history/
-node_modules/
-vendor/
-packages/
+# Cache Files
+*.cache
+.cache/
+cache/
+**/cache/
 .npm/
 .yarn/
 
-# Generated archives and large BWA index files
+# Dependencies
+node_modules/
+vendor/
+packages/
+
+# Build Output
+build/
+dist/
+out/
+*.min.*
+*.map
+
+# VS Code
+.vscode/
+.history/
+.github/copilot-instructions.md
 outputs.tar
-data/hg38.fa.sa
-data/hg38.fa.bwt
-data/hg38.fa.pac
+
+# Generated data and local development artifacts.
+/data/
+/outputs*/
+/results/
+/backups/
+/tmp/
+*.log
+*.out
+*.err
+*.mmap
+
+# Only curated final metrics and paper figure sources belong in Git.
+!/outputs/
+!/outputs_1000g/
+/outputs/**
+/outputs_1000g/**
+!/outputs/**/
+!/outputs_1000g/**/
+!/outputs/README.md
+!/outputs_1000g/README.md
+!/outputs/eval_multilen_seqdisjoint_*/**/evaluation_results.json
+!/outputs/eval_multilen_seqdisjoint_*/aggregate/comparison_metrics.json
+!/outputs/eval_multilen_seqdisjoint_*/aggregate/*.pdf
+!/outputs_1000g/eval_multilen_seqdisjoint_*/**/evaluation_results.json
+!/outputs_1000g/eval_multilen_seqdisjoint_*/aggregate/comparison_metrics.json
+!/outputs/identification_multilen_seqdisjoint_*/**/identification_results.json
+!/outputs/analysis_mean_*/data=*_hg38_multilen_seqdisjoint_mean/stats.json
+!/outputs/analysis_mean_*/data=*_hg38_multilen_seqdisjoint_mean/provenance.json
+!/outputs/analysis_mean_*/data=*_hg38_multilen_seqdisjoint_mean/similarity_euclidean.pdf
+!/outputs/publication_metadata/*.json
+!/outputs/cross_dataset_comparison_multilen_seqdisjoint/**/*.pdf
+!/outputs/cross_dataset_comparison_multilen_seqdisjoint/*.png
+!/outputs_1000g/cross_dataset_comparison_multilen_seqdisjoint/**/*.pdf
+/tokenizer_ablation/outputs*/
+
+# LaTeX source and paper figures are published; build intermediates are not.
+/tex/*.aux
+/tex/*.bbl
+/tex/*.bcf
+/tex/*.blg
+/tex/*.fdb_latexmk
+/tex/*.fls
+/tex/*.run.xml
+/tex/*-SAVE-ERROR
+/tex/tmp/
+
+# Curated larger-run layer-sensitivity evidence.
+!/outputs/layer_sensitivity_v1/README.md
+!/outputs/layer_sensitivity_v1/dataset_audit_100k.json
+!/outputs/layer_sensitivity_v1/**/evaluation_results.json
+!/outputs/layer_sensitivity_v1/**/manifest.json
+!/outputs/layer_sensitivity_v1/**/train/results.json
