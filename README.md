@@ -1,5 +1,5 @@
 # How Private Are DNA Embeddings? Inverting Foundation Model Representations of Genomic Sequences
-[![DOI: 10.48550/arXiv.2603.06950](https://img.shields.io/badge/DOI-10.48550/arXiv.2603.06950-4caf50)](https://arxiv.org/abs/2603.06950) [![Citation Badge](https://api.juleskreuer.eu/citation-badge.php?doi=10.48550/arXiv.2603.06950)](https://juleskreuer.eu//projects/citation-badge) [![Model Weights Badge](https://img.shields.io/badge/Huggingface-Model%20Weights-ffd21e?logo=huggingface)](https://huggingface.co/not-a-feature/DNA_Embedding_Inversion)
+[![DOI: 10.48550/arXiv.2603.06950](https://img.shields.io/badge/DOI-10.48550/arXiv.2603.06950-4caf50)](https://arxiv.org/abs/2603.06950) [![Citation Badge](https://api.juleskreuer.eu/citation-badge.php?doi=10.48550/arXiv.2603.06950)](https://juleskreuer.eu//projects/citation-badge) [![Model Weights Badge](https://img.shields.io/badge/Huggingface-Model%20Weights-ffd21e?logo=huggingface)](https://huggingface.co/not-a-feature/DNA-Embedding-Inversion)
 > [!NOTE]
 > **Authors:** Jules Kreuer*, Sofiane Ouaari*, Nico Pfeifer<br>
 >  *: Shared first authorship.<br>
@@ -30,6 +30,9 @@ The repository includes metric summaries and plots. Raw data, embeddings and
 checkpoints are not included. For identification, a budget of `k` loci supplies
 `2k` haplotype embeddings. The known-coordinate attack is a reference comparison,
 not a formal upper bound on the alignment-based attack.
+
+## Using the decoder models
+Go to https://huggingface.co/not-a-feature/DNA-Embedding-Inversion and follow the intructions.
 
 ## Run the benchmark
 
