@@ -349,10 +349,10 @@ def write_identification_table(data: dict[str, dict]) -> None:
         "\\begin{table}[H]",
         "\\centering",
         "\\scriptsize",
-        "\\begin{tabular}{lllrrrr}",
+        "\\begin{tabular}{lllrrrrr}",
         "\\toprule",
         "\\textbf{Model} & \\textbf{Locus sampling} & \\textbf{Coordinate access} & "
-        "$k_{0.5}$ & $k_{0.9}$ & $k_{0.99}$ & \\textbf{Top-1 at $k_{\\max}$} \\\\",
+        "$k_{0.5}$ & $k_{0.9}$ & $k_{0.99}$ & $k_{\\max}$ & \\textbf{Top-1 at $k_{\\max}$} \\\\",
         "\\midrule",
     ]
     for fm in _available(data):
@@ -364,7 +364,7 @@ def write_identification_table(data: dict[str, dict]) -> None:
                 lines.append(
                     f"{FM_LABELS[fm]} & {mode.replace('_', '-')} & {access} & "
                     f"{_threshold(curve, 0.5)} & {_threshold(curve, 0.9)} & "
-                    f"{_threshold(curve, 0.99)} & {curve[str(k_max)]:.3f} \\\\"
+                    f"{_threshold(curve, 0.99)} & {k_max:,} & {curve[str(k_max)]:.3f} \\\\"
                 )
     lines.extend(
         [
@@ -374,7 +374,7 @@ def write_identification_table(data: dict[str, dict]) -> None:
             "reconstructions. Each point averages top-1 identification accuracy over 50 seeded random "
             "locus permutations. $k_p$ is the smallest evaluated locus budget reaching "
             "top-1 accuracy $p$; ``--'' indicates the threshold was not reached within the "
-            "locus pool. $k_{\\max}$ is the largest budget evaluated for that sampling mode.}",
+            "evaluated grid. $k_{\\max}$ is the largest budget evaluated for that sampling mode.}",
             "\\label{tab:identification_results}",
             "\\end{table}",
             "",
@@ -413,9 +413,35 @@ def record_identification_numbers(data: dict[str, dict], numbers: Numbers) -> No
                     )
 
 
+def record_1000g_stratum_numbers(numbers: Numbers) -> None:
+    """Report the variant-bearing length-25 subset behind the aggregate curve."""
+    shared_counts = None
+    for fm in FM_ORDER:
+        files = list((ROOT / "outputs_1000g" / f"eval_multilen_seqdisjoint_{fm}").glob("*/evaluation_results.json"))
+        matches = [_read_json(path) for path in files if "_L25" in path.parent.name]
+        assert len(matches) == 1, (fm, len(matches))
+        strata = matches[0]["reconstruction_strata"]
+        counts = (
+            strata["all"]["num_sequences"],
+            strata["reference_identical"]["num_sequences"],
+            strata["variant_bearing_train_unseen"]["num_sequences"],
+        )
+        if shared_counts is None:
+            shared_counts = counts
+            for key, value in zip(("total_n", "reference_n", "variant_unseen_n"), counts):
+                numbers.integer(f"cross.25.{key}", value)
+        else:
+            assert counts == shared_counts, (fm, counts, shared_counts)
+        numbers.fixed(
+            f"cross.25.{fm}.variant_unseen_lev",
+            strata["variant_bearing_train_unseen"]["levenshtein_mean"],
+        )
+
+
+
 def plot_identification(data: dict[str, dict]) -> None:
     fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.15), sharey=True)
-    panels = (("oracle", "Known loci (oracle)"), ("locus_blind", "Unknown loci (alignment-based)"))
+    panels = (("oracle", "Known coordinates"), ("locus_blind", "Alignment-based search"))
     mode_style = {"random": ("--", "o"), "snp_enriched": ("-", "s")}
     fms = _available(data)
     for ax, (threat, title) in zip(axes, panels):
@@ -446,7 +472,7 @@ def plot_identification(data: dict[str, dict]) -> None:
     axes[0].set_ylabel("Top-1 identification accuracy")
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(handles, labels, loc="lower center", ncol=3, frameon=False, fontsize=7.4)
-    fig.tight_layout(rect=(0, 0.16 if len(fms) < 3 else 0.22, 1, 1), w_pad=2.2)
+    fig.tight_layout(rect=(0, 0.16 if len(fms) < 3 else 0.22, 1, 1), w_pad=3.0)
     FIGURE_DIR.mkdir(parents=True, exist_ok=True)
     fig.savefig(FIGURE_DIR / "identification_top1_vs_k.pdf", bbox_inches="tight")
     fig.savefig(FIGURE_DIR / "identification_top1_vs_k.png", dpi=300, bbox_inches="tight")
@@ -501,6 +527,7 @@ def main() -> None:
         numbers.percent(f"coverage.{length}", n_train / 4**length, places=3)
     write_reconstruction_table(reconstruction)
     record_reconstruction_numbers(reconstruction, numbers)
+    record_1000g_stratum_numbers(numbers)
     record_embedding_geometry_numbers(embedding_geometry, numbers)
     write_embedding_geometry_table(embedding_geometry)
 

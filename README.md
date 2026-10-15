@@ -1,7 +1,6 @@
 # How Private Are DNA Embeddings? Inverting Foundation Model Representations of Genomic Sequences
 [![DOI: 10.48550/arXiv.2603.06950](https://img.shields.io/badge/DOI-10.48550/arXiv.2603.06950-4caf50)](https://arxiv.org/abs/2603.06950) [![Citation Badge](https://api.juleskreuer.eu/citation-badge.php?doi=10.48550/arXiv.2603.06950)](https://juleskreuer.eu//projects/citation-badge) [![Model Weights Badge](https://img.shields.io/badge/Huggingface-Model%20Weights-ffd21e?logo=huggingface)](https://huggingface.co/not-a-feature/DNA_Embedding_Inversion)
 > [!NOTE]
-> DOI: 10.48550/arXiv.2603.06950<br>
 > **Authors:** Jules Kreuer*, Sofiane Ouaari*, Nico Pfeifer<br>
 >  *: Shared first authorship.<br>
 >
@@ -60,7 +59,7 @@ Benchmark code is in `src/`, `conf/`, `generate/`, `embedding_analysis/` and
 
 ## License
 
-This project is licensed under the [LGPL-2.1 License](LICENSE).
+This project is licensed under the [European Union Public Licence 1.2 (EUPL-1.2)](LICENSE).
 
 ## Acknowledgments
 

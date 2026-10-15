@@ -94,7 +94,6 @@ outputs.tar
 !/outputs/analysis_mean_*/data=*_hg38_multilen_seqdisjoint_mean/similarity_euclidean.pdf
 !/outputs/publication_metadata/*.json
 !/outputs/cross_dataset_comparison_multilen_seqdisjoint/**/*.pdf
-!/outputs/cross_dataset_comparison_multilen_seqdisjoint/*.png
 !/outputs_1000g/cross_dataset_comparison_multilen_seqdisjoint/**/*.pdf
 /tokenizer_ablation/outputs*/
 
@@ -115,3 +114,10 @@ outputs.tar
 !/outputs/layer_sensitivity_v1/**/evaluation_results.json
 !/outputs/layer_sensitivity_v1/**/manifest.json
 !/outputs/layer_sensitivity_v1/**/train/results.json
+
+# Final multi-length plots and training summaries.
+!/outputs/**/*.pdf
+!/outputs/**/*.svg
+!/outputs_1000g/**/*.pdf
+!/outputs_1000g/**/*.svg
+!/outputs/train_multilen_seqdisjoint_*/**/results.json
